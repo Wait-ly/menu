@@ -7,7 +7,7 @@ const mealOptions = ['Cocktails', 'Bar', 'Dinner', 'Brunch', 'Cheese', 'Lunch', 
 
 const foodCategories = ['Raw Bar', 'Snacks', 'Appetizers', 'Cheese', 'Absinthe Classics', 'Entrees', 'Sides', 'Small Plates', 'Soups & Salads', 'Pastries', 'Main', 'Desserts', 'After-dinner Spirits', 'Selection of Brandy', 'Selected Single-malt Scotches', 'Port, Sherry, & Madeira', 'Dessert Wines', 'Selection of Tea', 'Cocktails'];
 
-const createMenu = () => {
+const createMenu = (id) => {
   const rngArr = (array, max) => chance.pickset(array, chance.integer({ min: 1, max }));
   const rng = (max) => chance.integer({ min: 1, max });
 
@@ -15,7 +15,7 @@ const createMenu = () => {
     const desc = faker.lorem.sentence();
     const dish = {
       description: desc,
-      price: chance.floating({ min: 5, max: 200, fixed: 2 })
+      price: chance.floating({ min: 5, max: 200, fixed: 2 }),
     };
     return dish;
   };
@@ -40,7 +40,7 @@ const createMenu = () => {
   };
 
   const createAMenu = () => {
-    const menu = {};
+    const menu = { id };
     const meals = rngArr(mealOptions, mealOptions.length);
     for (let i = 0; i < meals.length; i++) {
       menu[meals[i]] = createMeal();
@@ -51,4 +51,4 @@ const createMenu = () => {
   return createAMenu();
 };
 
-module.exports = createMenu;
+module.exports = { createMenu };
