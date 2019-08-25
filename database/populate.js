@@ -1,18 +1,34 @@
-const { MongoClient } = require('mongodb');
-const createMenu = require('./menuData.js');
+/* eslint-disable no-console */
+const mongoose = require('mongoose');
+const { createMenu } = require('./menuData.js');
 
-MongoClient.connect('mongodb://localhost:27017/menu', (err, client) => {
+const menuSchema = new mongoose.Schema({ any: {}, id: Number }, { strict: false });
 
-  if (err) {
-    console.log(err);
-  } else {
-    const db = client.db('menu');
-    db.collection('menu').drop();
-    console.log('connection success!')
-    const menus = [];
-    for (let i = 0; i < 100; i++) {
-      menus.push(createMenu());
+const conn = mongoose.createConnection('mongodb://localhost:27017/menu',
+  (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('connection success!');
     }
-    db.collection('menu').insertMany(menus);
-  }
-});
+  });
+
+const Menu = conn.model('Menu', menuSchema);
+const allMenus = [];
+
+conn.collection('menus').drop(
+  () => {
+    console.log('collection dropped!');
+    for (let i = 1; i < 101; i++) {
+      const menu = createMenu(i);
+      allMenus.push(menu);
+    }
+    Menu.insertMany(allMenus, (err) => { if (err) { console.log('this is insertMany error', err); } });
+  },
+);
+
+const findMenu = (id) => {
+  return Menu.find({ id });
+};
+
+module.exports = { findMenu };
