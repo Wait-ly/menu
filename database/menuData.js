@@ -51,6 +51,4 @@ const createMenu = () => {
   return createAMenu();
 };
 
-console.log(createMenu());
-
 module.exports = createMenu;
