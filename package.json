@@ -10,7 +10,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js --watch",
-    "test": "jest --watch --no-cache"
+    "test": "jest --watch --no-cache --verbose"
   },
   "babel": {
     "env": {
@@ -31,7 +31,7 @@
       "^.+\\.jsx$": "babel-jest",
       "^.+\\.js$": "babel-jest"
     },
-    "setupFilesAfterEnv": ["./node_modules/jest-enzyme/lib/index.js"]
+    "setupFilesAfterEnv": ["./test/App.test.jsx"]
   },
   "dependencies": {
     "body-parser": "^1.19.0",
