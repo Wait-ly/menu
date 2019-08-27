@@ -9,8 +9,7 @@ const foodCategories = ['Raw Bar', 'Snacks', 'Appetizers', 'Cheese', 'Absinthe C
 
 const createMenu = (id) => {
   const rngArr = (array, max) => chance.pickset(array, chance.integer({ min: 1, max }));
-  const rng = (max) => chance.integer({ min: 1, max });
-
+  const rng = () => chance.integer({ min: 1, max: 6 });
   const createDish = () => {
     const desc = faker.lorem.sentence();
     const dish = {
@@ -22,8 +21,9 @@ const createMenu = (id) => {
 
   const createCategory = () => {
     const category = {};
-    const dishName = faker.lorem.word();
-    for (let i = 0; i < rng(5); i++) {
+    const rando = rng();
+    for (let i = 0; i < rando; i++) {
+      const dishName = faker.lorem.word();
       category[dishName] = createDish();
     }
     return category;
