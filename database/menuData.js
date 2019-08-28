@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const faker = require('faker');
 const Chance = require('chance');
 
@@ -9,7 +10,7 @@ const foodCategories = ['Raw Bar', 'Snacks', 'Appetizers', 'Cheese', 'Absinthe C
 
 const createMenu = (id) => {
   const rngArr = (array, max) => chance.pickset(array, chance.integer({ min: 1, max }));
-  const rng = () => chance.integer({ min: 1, max: 6 });
+  const rng = () => chance.integer({ min: 4, max: 12 });
   const createDish = () => {
     const desc = faker.lorem.sentence();
     const dish = {

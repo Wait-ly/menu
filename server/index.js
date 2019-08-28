@@ -20,7 +20,6 @@ app.get('/api/L7/menu', (req, res) => {
       const entries = Object.entries(result[0]);
       const menuData = Object.entries(entries[3][1]);
       menuData.forEach((entry) => {
-        console.log('this is a entry: ', entry)
         if (entry[0] !== 'id' && entry[0] !== '_id' && entry[0] !== '__v') {
           // eslint-disable-next-line prefer-destructuring
           memo[0][entry[0]] = entry[1];

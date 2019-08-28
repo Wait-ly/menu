@@ -1,427 +1,321 @@
 // eslint-disable-next-line no-unused-expressions
 const sample = [
   {
-    Dinner: {
-      Main: {
-        'Tempura Ramen': {
-          description: 'Perspiciatis et perspiciatis assumenda repellendus sequi nam quod sunt et.',
-          price: 31.67,
-        },
-      },
-      'After-dinner Spirits': {
-        itaque: {
-          description: 'Beatae odio qui aut et recusandae vitae dolor quo.',
-          price: 93.75,
-        },
-      },
-      'Small Plates': {
-        in: {
-          description: 'Vel impedit iste odio natus magni.',
-          price: 27.06,
-        },
-      },
-      'Selection of Tea': {
-        suscipit: {
-          description: 'Distinctio delectus est distinctio consequatur dolor hic.',
-          price: 11,
-        },
-      },
-      'Port, Sherry, & Madeira': {
-        non: {
-          description: 'Et assumenda exercitationem adipisci deserunt blanditiis quidem pariatur.',
-          price: 99.57,
-        },
-      },
-      Cocktails: {
-        et: {
-          description: 'Sit porro consequatur ad provident est illo veritatis nisi.',
-          price: 35.37,
-        },
-      },
-      Sides: {
-        incidunt: {
-          description: 'Tempora qui laudantium ullam voluptatem.',
-          price: 48.5,
-        },
-      },
-      Appetizers: {
-        sunt: {
-          description: 'Cupiditate similique assumenda sequi possimus quis saepe.',
-          price: 8.33,
-        },
-      },
-      'Raw Bar': {
-        ut: {
-          description: 'Facilis rem error consequatur nihil libero quas voluptatem beatae.',
-          price: 38.34,
-        },
-      },
-      Snacks: {
-        voluptates: {
-          description: 'At voluptate eaque.',
-          price: 185.18,
-        },
-      },
-      'Selected Single-malt Scotches': {
-        labore: {
-          description: 'Beatae aliquid quos.',
-          price: 176.93,
+    Brunch: {
+      'Selection of Brandy': {
+        eum: {
+          description: 'Veritatis ratione laudantium ullam occaecati aliquam voluptas sint.',
+          price: 5.77,
         },
       },
       'Dessert Wines': {
-        beatae: {
-          description: 'Impedit rem ducimus necessitatibus.',
-          price: 13.96,
+        consequatur: {
+          description: 'Molestias et vero repellat iure eius ut officiis et soluta.',
+          price: 60.61,
+        },
+        consequuntur: {
+          description: 'Voluptates ipsam aut soluta et nemo exercitationem omnis eligendi.',
+          price: 136.04,
         },
       },
-      Entrees: {
-        explicabo: {
-          description: 'Quisquam enim ut et voluptatem qui unde quibusdam nesciunt.',
-          price: 194.16,
+      'Small Plates': {
+        delectus: {
+          description: 'Et quod alias molestias enim rem incidunt.',
+          price: 49.35,
         },
-      },
-      'Soups & Salads': {
-        provident: {
-          description: 'Rem veritatis natus repellat accusamus quam aliquam rerum sunt non.',
-          price: 131.02,
+        perspiciatis: {
+          description: 'Provident sapiente consequatur magni distinctio aut natus possimus et sint.',
+          price: 137.77,
         },
-      },
-    },
-    Lunch: {
-      'Selected Single-malt Scotches': {
-        aperiam: {
-          description: 'Occaecati suscipit sit accusantium delectus suscipit eos iusto.',
-          price: 153.25,
+        sed: {
+          description: 'Quia deserunt neque est ut amet enim et minima provident.',
+          price: 92.96,
         },
-      },
-      Desserts: {
-        accusantium: {
-          description: 'Occaecati minima porro ea animi doloribus.',
-          price: 194.94,
+        quidem: {
+          description: 'Et nam ipsa molestias dolore aut recusandae sed et cupiditate.',
+          price: 15.15,
         },
-      },
-      'Soups & Salads': {
-        porro: {
-          description: 'Ut omnis illum pariatur odio qui.',
-          price: 147.77,
+        voluptatibus: {
+          description: 'Optio mollitia nisi similique natus illum corrupti.',
+          price: 179.58,
+        },
+        labore: {
+          description: 'Saepe provident deserunt molestiae omnis esse.',
+          price: 167.07,
         },
       },
       'Absinthe Classics': {
         ut: {
-          description: 'Maiores facilis deserunt officiis officia blanditiis.',
-          price: 111.67,
+          description: 'Ea eum sunt.',
+          price: 78.36,
         },
-      },
-      Pastries: {
-        consectetur: {
-          description: 'Fuga aperiam qui ex quis et debitis dolorem dignissimos eum.',
-          price: 87.24,
+        itaque: {
+          description: 'Facilis doloremque in.',
+          price: 86.9,
         },
-      },
-      Cheese: {
-        eos: {
-          description: 'Asperiores voluptatem non autem sed est sit.',
-          price: 25.15,
+        ab: {
+          description: 'Dicta consequatur sint sit tenetur iste autem dolorum quasi.',
+          price: 25.47,
         },
-      },
-      'After-dinner Spirits': {
-        voluptatem: {
-          description: 'Corrupti laborum molestias neque ipsum repudiandae.',
-          price: 26.38,
+        eum: {
+          description: 'Sit cupiditate cupiditate nobis id in harum ut.',
+          price: 155.74,
         },
-      },
-      'Selection of Tea': {
-        omnis: {
-          description: 'Ut est sint autem suscipit sint quis iure ut.',
-          price: 27.25,
-        },
-      },
-      'Dessert Wines': {
-        repudiandae: {
-          description: 'Necessitatibus exercitationem nesciunt rerum molestiae sint.',
-          price: 172.52,
-        },
-      },
-      Entrees: {
-        sit: {
-          description: 'Nesciunt quia eveniet.',
-          price: 118.22,
-        },
-      },
-      'Small Plates': {
-        aut: {
-          description: 'Omnis eaque dignissimos qui qui repellat mollitia rerum et.',
-          price: 154.37,
-        },
-      },
-      'Raw Bar': {
-        placeat: {
-          description: 'Autem quia eos quibusdam provident autem.',
-          price: 96.71,
-        },
-      },
-      Appetizers: {
-        asperiores: {
-          description: 'Nostrum est facere et et.',
-          price: 152.08,
-        },
-      },
-      Cocktails: {
-        dicta: {
-          description: 'Aut omnis totam in reprehenderit et voluptate.',
-          price: 131.23,
-        },
-      },
-      Main: {
-        et: {
-          description: 'Qui laboriosam repellendus harum atque adipisci qui voluptatem perspiciatis.',
-          price: 184.28,
-        },
-      },
-    },
-    Cheese: {
-      Pastries: {
-        et: {
-          description: 'Odit odit soluta.',
-          price: 28.75,
-        },
-      },
-      Main: {
-        aut: {
-          description: 'Odit repellendus exercitationem laudantium repellendus ut voluptatibus.',
-          price: 52.68,
-        },
-      },
-      Snacks: {
-        rerum: {
-          description: 'Dolores qui totam cumque.',
-          price: 143.68,
-        },
-      },
-      'Raw Bar': {
-        dolor: {
-          description: 'Tempora aperiam mollitia alias modi esse esse.',
-          price: 81.82,
-        },
-      },
-      'Selection of Brandy': {
-        magni: {
-          description: 'Dolor iure dolor qui totam.',
-          price: 111.2,
-        },
-      },
-      Entrees: {
-        ipsum: {
-          description: 'Minima alias rerum consequatur accusantium eligendi et.',
-          price: 151.07,
-        },
-      },
-      'After-dinner Spirits': {
-        voluptatem: {
-          description: 'Provident nihil ipsa at.',
-          price: 104.14,
-        },
-      },
-      'Small Plates': {
-        mollitia: {
-          description: 'Ducimus similique est et molestias nam veritatis et sequi omnis.',
-          price: 89.04,
-        },
-      },
-      'Soups & Salads': {
-        a: {
-          description: 'Repudiandae hic at similique.',
-          price: 188.93,
-        },
-      },
-    },
-    Bar: {
-      'Small Plates': {
-        doloremque: {
-          description: 'Vel atque inventore ab perferendis quis.',
-          price: 100.25,
-        },
-      },
-      'After-dinner Spirits': {
-        sunt: {
-          description: 'Dolorem ea provident illo omnis et impedit.',
-          price: 5.43,
-        },
-      },
-      'Selection of Brandy': {
-        mollitia: {
-          description: 'Quia provident quis doloremque omnis soluta quos doloremque dignissimos.',
-          price: 25.52,
-        },
-      },
-      Desserts: {
-        possimus: {
-          description: 'Sequi ut nam sit tempore nisi fugiat.',
-          price: 93.62,
-        },
-      },
-      Appetizers: {
-        perspiciatis: {
-          description: 'Beatae tenetur nulla esse ipsa veniam cumque aut vel.',
-          price: 120.78,
-        },
-      },
-      Entrees: {
-        et: {
-          description: 'Voluptas nulla est consequuntur rerum impedit fugiat fugit est.',
-          price: 17.49,
-        },
-      },
-      'Raw Bar': {
-        enim: {
-          description: 'Eum reiciendis tempore vitae voluptatibus eligendi minus dolores.',
-          price: 192.93,
-        },
-      },
-      'Selection of Tea': {
         laboriosam: {
-          description: 'Ut commodi repellat quia vero sed voluptatum nam.',
-          price: 21.08,
-        },
-      },
-      Cocktails: {
-        nihil: {
-          description: 'Iusto quia cum sit dolore tempora voluptatem earum.',
-          price: 134.79,
+          description: 'Vel architecto sint id nihil.',
+          price: 141.96,
         },
       },
       Main: {
-        est: {
-          description: 'Ut laborum eum perspiciatis.',
-          price: 166.23,
+        quae: {
+          description: 'Ullam fugiat blanditiis enim doloremque ad.',
+          price: 155,
         },
-      },
-      Cheese: {
-        iusto: {
-          description: 'Omnis id veniam illo.',
-          price: 61.47,
+        voluptas: {
+          description: 'Alias saepe nihil.',
+          price: 81.1,
         },
-      },
-      'Dessert Wines': {
-        quibusdam: {
-          description: 'Nemo atque est velit.',
-          price: 68.64,
+        qui: {
+          description: 'Ex libero fugit repudiandae molestiae quo.',
+          price: 151.05,
         },
       },
       Sides: {
-        minima: {
-          description: 'Quia dolorem dolor facere maxime.',
-          price: 55.84,
+        earum: {
+          description: 'Saepe est quod illum nihil quasi quo.',
+          price: 193.27,
         },
       },
-      'Port, Sherry, & Madeira': {
-        error: {
-          description: 'Est assumenda quae voluptatem ducimus sint ut.',
-          price: 35.11,
+      Entrees: {
+        quos: {
+          description: 'Dignissimos suscipit molestias possimus asperiores qui.',
+          price: 75.37,
+        },
+        et: {
+          description: 'Ea accusamus deleniti sit ut eaque ut molestiae.',
+          price: 131.57,
+        },
+        id: {
+          description: 'Nisi sed quidem nulla quia in aut ducimus quae.',
+          price: 32.53,
+        },
+        quaerat: {
+          description: 'Dignissimos iure nostrum sapiente enim aut.',
+          price: 36.67,
+        },
+      },
+    },
+    Dinner: {
+      'Selection of Brandy': {
+        est: {
+          description: 'Inventore inventore fuga consequatur.',
+          price: 81.79,
+        },
+        iusto: {
+          description: 'Id aliquam facere veniam architecto omnis occaecati et.',
+          price: 184.28,
+        },
+        et: {
+          description: 'Ut voluptate architecto numquam aut quisquam eos unde.',
+          price: 114.62,
+        },
+        qui: {
+          description: 'Nihil quo nostrum perferendis.',
+          price: 181.76,
+        },
+      },
+      'Soups & Salads': {
+        tempora: {
+          description: 'Soluta temporibus officiis voluptatem dolor voluptatem odio enim maxime quo.',
+          price: 37.92,
+        },
+        consequuntur: {
+          description: 'Repellat consequatur cumque et repellat vero.',
+          price: 175.96,
+        },
+        vitae: {
+          description: 'Eos cupiditate repellendus non necessitatibus est sed inventore.',
+          price: 72.69,
+        },
+        velit: {
+          description: 'Enim sapiente repellat distinctio.',
+          price: 85.93,
+        },
+        sed: {
+          description: 'Et veritatis ea dolorem et.',
+          price: 80.8,
+        },
+      },
+      'After-dinner Spirits': {
+        sequi: {
+          description: 'Quos unde id maiores laboriosam sed laudantium et autem amet.',
+          price: 150.22,
+        },
+        saepe: {
+          description: 'Nisi minus quos aut explicabo.',
+          price: 154.97,
+        },
+        veniam: {
+          description: 'Nobis qui molestiae amet officia dicta velit ipsam.',
+          price: 13.34,
+        },
+        quis: {
+          description: 'Laboriosam voluptatibus totam tempore placeat ea quo eos consequatur sint.',
+          price: 53.43,
+        },
+        distinctio: {
+          description: 'A quia aut facilis sunt fugiat.',
+          price: 64.09,
+        },
+        doloribus: {
+          description: 'Qui consequatur in corporis.',
+          price: 165.57,
+        },
+      },
+      Desserts: {
+        architecto: {
+          description: 'Rerum dolorem corporis sed tempore quasi non consequuntur.',
+          price: 115.87,
         },
       },
     },
     Dessert: {
-      'Port, Sherry, & Madeira': {
-        nostrum: {
-          description: 'Necessitatibus in ut deserunt cumque.',
-          price: 177.03,
-        },
-      },
-      'Soups & Salads': {
-        consequatur: {
-          description: 'Autem quod voluptatum eius vitae minima expedita.',
-          price: 97.05,
-        },
-      },
       'Selection of Brandy': {
-        dolor: {
-          description: 'Perferendis laboriosam nihil repellendus fugit laborum.',
-          price: 145.62,
+        molestiae: {
+          description: 'Debitis ut facilis debitis accusamus doloribus.',
+          price: 29.14,
+        },
+        delectus: {
+          description: 'Aut molestiae quaerat et.',
+          price: 132.47,
+        },
+        provident: {
+          description: 'Atque similique hic est voluptatum sed.',
+          price: 58.26,
+        },
+      },
+    },
+    Cheese: {
+      Snacks: {
+        repellat: {
+          description: 'Et saepe aliquid adipisci.',
+          price: 135.46,
+        },
+        omnis: {
+          description: 'Maiores voluptas distinctio non quam qui numquam magni non porro.',
+          price: 143.3,
+        },
+        perspiciatis: {
+          description: 'Ipsum numquam soluta.',
+          price: 8.83,
+        },
+        vero: {
+          description: 'Dignissimos facilis minus.',
+          price: 40.93,
+        },
+        illum: {
+          description: 'Qui vero blanditiis qui ut beatae aut nostrum consequatur.',
+          price: 164.1,
+        },
+        a: {
+          description: 'Laudantium nemo commodi id et soluta magni.',
+          price: 74.69,
         },
       },
       'Selection of Tea': {
-        culpa: {
-          description: 'Amet et facilis laborum asperiores impedit sed nihil qui unde.',
-          price: 114.62,
+        deleniti: {
+          description: 'Harum quam impedit minus corporis et esse id incidunt.',
+          price: 198.95,
         },
-      },
-      'Absinthe Classics': {
-        non: {
-          description: 'Officia voluptate architecto odio at reiciendis facere pariatur qui accusantium.',
-          price: 93.33,
+        quia: {
+          description: 'Quo eveniet ut delectus quam magnam voluptatem cum eos.',
+          price: 11.91,
         },
-      },
-      Appetizers: {
-        et: {
-          description: 'Ex et labore voluptate quis molestias repudiandae sint.',
-          price: 142.52,
+        itaque: {
+          description: 'Et inventore aut ipsum quia exercitationem deserunt non.',
+          price: 150.89,
         },
-      },
-      Entrees: {
-        repudiandae: {
-          description: 'Fugit et sapiente aut molestiae.',
-          price: 53.67,
+        qui: {
+          description: 'Iste repellendus in quaerat numquam quia magni aspernatur cum.',
+          price: 158.76,
         },
-      },
-      'After-dinner Spirits': {
-        iusto: {
-          description: 'Voluptatem iusto nisi dolores accusantium iure voluptatum omnis.',
-          price: 151.63,
+        quas: {
+          description: 'Dolor eum eveniet id incidunt et repellendus.',
+          price: 189.3,
         },
-      },
-      Cocktails: {
-        minus: {
-          description: 'Voluptatem ab temporibus ut.',
-          price: 82.15,
-        },
-      },
-      'Small Plates': {
-        ipsum: {
-          description: 'Natus suscipit temporibus saepe veritatis ut molestiae nemo vitae qui.',
-          price: 186.56,
-        },
-      },
-      'Dessert Wines': {
-        non: {
-          description: 'Voluptas atque architecto accusamus et sapiente aut id aut.',
-          price: 57.03,
-        },
-      },
-      'Selected Single-malt Scotches': {
-        voluptatem: {
-          description: 'Exercitationem blanditiis consequatur.',
-          price: 38.82,
-        },
-      },
-      Desserts: {
-        nihil: {
-          description: 'Velit soluta cum hic.',
-          price: 22.93,
-        },
-      },
-      Snacks: {
-        nulla: {
-          description: 'In itaque ipsum eligendi voluptas ipsam vitae.',
-          price: 31.17,
-        },
-      },
-      Cheese: {
-        quasi: {
-          description: 'Harum aut sed.',
-          price: 178.84,
-        },
-      },
-      Pastries: {
-        laudantium: {
-          description: 'Culpa animi maxime dolorem molestiae vero.',
-          price: 104.85,
+        totam: {
+          description: 'Dolorem accusantium ut eum.',
+          price: 41.66,
         },
       },
       'Raw Bar': {
-        laboriosam: {
-          description: 'Modi dicta facere.',
-          price: 60.63,
+        id: {
+          description: 'Inventore nisi quia maxime.',
+          price: 54.14,
+        },
+        adipisci: {
+          description: 'Et ratione dicta quos.',
+          price: 124.48,
+        },
+      },
+      Desserts: {
+        nemo: {
+          description: 'Et ut autem dolorem.',
+          price: 137.03,
+        },
+        fugit: {
+          description: 'Laboriosam non omnis sit deserunt.',
+          price: 160.52,
+        },
+        cupiditate: {
+          description: 'Eos minima doloribus sequi rerum adipisci commodi aperiam iste.',
+          price: 53.92,
+        },
+        illum: {
+          description: 'Nesciunt omnis est voluptatem odio doloribus molestiae vitae iste.',
+          price: 108.88,
+        },
+        vel: {
+          description: 'Ratione quam quod illo.',
+          price: 71.32,
+        },
+      },
+      'Selected Single-malt Scotches': {
+        repellat: {
+          description: 'Rem aut dolore ducimus corporis quia exercitationem rerum.',
+          price: 121.27,
+        },
+        et: {
+          description: 'Illo non nihil fugiat non tempora praesentium voluptatem.',
+          price: 132.06,
+        },
+      },
+      'Soups & Salads': {
+        et: {
+          description: 'Beatae non veniam.',
+          price: 134.99,
+        },
+      },
+      Main: {
+        dolor: {
+          description: 'Sint voluptatem dignissimos dolorem libero occaecati pariatur temporibus possimus totam.',
+          price: 175.84,
+        },
+        ad: {
+          description: 'Corporis molestiae tenetur pariatur iste.',
+          price: 176.88,
+        },
+        et: {
+          description: 'Excepturi vero aliquam dicta expedita aperiam et qui cumque tempora.',
+          price: 5.05,
+        },
+        quidem: {
+          description: 'Facere dolorum mollitia cupiditate temporibus voluptates.',
+          price: 112.65,
+        },
+        odio: {
+          description: 'Ea ipsa quia inventore tempore sit quia dolorum minima nisi.',
+          price: 75.41,
         },
       },
     },
