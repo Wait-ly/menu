@@ -23,7 +23,13 @@ conn.collection('menus').drop(
       const menu = createMenu(i);
       allMenus.push(menu);
     }
-    Menu.insertMany(allMenus, (err) => { if (err) { console.log('this is insertMany error', err); } });
+    Menu.insertMany(allMenus, (err) => {
+      if (err) {
+        console.log('this is insertMany error', err);
+      } else {
+        console.log('finished populating');
+      }
+    });
   },
 );
 
