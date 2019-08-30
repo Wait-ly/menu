@@ -1,4 +1,16 @@
 .btn {
-  background-color: red;
-  color: white;
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1rem;
+  font-weight: 500;
+  width: 18rem;
+  border-radius: 2px;
+  display: inline-block;
+  box-sizing: border-box;
+
+}
+
+@font-face {
+  font-family: 'brandon-text';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Bold.otf') format('opentype');
 }

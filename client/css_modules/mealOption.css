@@ -1,0 +1,15 @@
+.btn {
+  margin-right: 16px;
+  background-color: #fff;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #2d333f;
+  border: 1px solid #d8d9db;
+  padding: calc(8px - 1px) calc(16px - 1px);
+  border-radius: 2px;
+}
+
+@font-face {
+  font-family: 'brandon-text';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
+}
