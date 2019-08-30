@@ -21,7 +21,22 @@ module.exports = {
       {
         test: /\.css$/i,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              },
+              importLoaders: 1,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(otf)$/i,
+        loader: 'url-loader',
       },
     ],
   },

@@ -1,0 +1,44 @@
+/* .btn2 {
+  -webkit-appearance: button;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: buttonface;
+  box-sizing: border-box;
+  margin: 0em;
+  font: 400 11px system-ui;
+  padding: calc(8px - 1px) calc(16px - 1px);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-image: initial;
+} */
+
+@font-face {
+  font-family: 'brandon-text';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
+}.btn {
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1rem;
+  font-weight: 500;
+  width: 18rem;
+  border-radius: 2px;
+  display: inline-block;
+  box-sizing: border-box;
+
+}
+
+@font-face {
+  font-family: 'brandon-text';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
+}

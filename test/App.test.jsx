@@ -20,7 +20,7 @@ describe('App component', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  //doesn't work, needs to be refactored ಠ_ಠ
+  // doesn't work, needs to be refactored ಠ_ಠ
   test('it should change state', () => {
     const wrapper = mount(<App states={fakeState} />);
     wrapper

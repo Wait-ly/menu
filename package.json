@@ -13,16 +13,6 @@
     "test": "jest --watchAll --coverage",
     "init": "jest --init"
   },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "@babel/preset-env",
-          "@babel/preset-react"
-        ]
-      }
-    }
-  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "chance": "^1.0.18",
@@ -56,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "jest": "^24.9.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",

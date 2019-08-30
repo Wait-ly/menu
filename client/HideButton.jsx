@@ -4,7 +4,7 @@ import styles from './css_modules/hideButton.css';
 const HideButton = (props) => {
   const { visibility, handleVisibility } = props;
   return (
-    <button type="button" className="btn" onClick={() => handleVisibility()}>{visibility}</button>
+    <button type="button" className={styles.btn} onClick={() => handleVisibility()}>{visibility}</button>
   );
 };
 

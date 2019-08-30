@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       menuData: sample, // array
       menuView: [{ Brunch: true }, { Dinner: false }],
-      visibility: ['View Full Menu', false],
+      visibility: ['View full menu', false],
     };
     this.getMenuData = this.getMenuData.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -19,16 +19,16 @@ class App extends React.Component {
   }
 
   // gets menu data as soon as page renders
-  componentDidMount() {
-    this.getMenuData(() => {
-      const { menuData } = this.state;
-      const mealOptions = Object.keys(menuData[0]);
-      const meal0 = { [mealOptions[0]]: true };
-      const memo = mealOptions.map((meal) => ({ [meal]: false }));
-      memo[0] = meal0;
-      this.setState({ menuView: memo });
-    });
-  }
+  // componentDidMount() {
+  //   this.getMenuData(() => {
+  //     const { menuData } = this.state;
+  //     const mealOptions = Object.keys(menuData[0]);
+  //     const meal0 = { [mealOptions[0]]: true };
+  //     const memo = mealOptions.map((meal) => ({ [meal]: false }));
+  //     memo[0] = meal0;
+  //     this.setState({ menuView: memo });
+  //   });
+  // }
 
   // get menu data from server
   getMenuData(cb = null) {
@@ -55,11 +55,12 @@ class App extends React.Component {
   handleVisibility() {
     const { visibility } = this.state;
     if (visibility[1] === true) {
-      this.setState({ visibility: ['View Full Menu', false] });
+      this.setState({ visibility: ['View full menu', false] });
     } else {
       this.setState({ visibility: ['Collapse Menu', true] });
     }
   }
+
 
   render() {
     const { menuData, menuView, visibility } = this.state;
