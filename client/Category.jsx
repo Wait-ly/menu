@@ -1,13 +1,20 @@
 import React from 'react';
 import Dish from './Dish';
+import styles from './css_modules/category.css';
 
 const Category = (props) => {
   const { dishes, category } = props;
   return (
     <div>
-      <div>{category}</div>
+      <h3 className={styles.name}>{category}</h3>
+      <br />
       {dishes.map(
-        (dish) => <Dish name={dish[0]} description={dish[1].description} price={dish[1].price} />,
+        (dish) => (
+          <div>
+            <Dish name={dish[0]} description={dish[1].description} price={dish[1].price} />
+            <br />
+          </div>
+        ),
       )}
     </div>
   );

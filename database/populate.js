@@ -16,22 +16,22 @@ const conn = mongoose.createConnection('mongodb://localhost:27017/menu',
 const Menu = conn.model('Menu', menuSchema);
 const allMenus = [];
 
-// conn.collection('menus').drop(
-//   () => {
-//     console.log('collection dropped!');
-//     for (let i = 1; i < 101; i++) {
-//       const menu = createMenu(i);
-//       allMenus.push(menu);
-//     }
-//     Menu.insertMany(allMenus, (err) => {
-//       if (err) {
-//         console.log('this is insertMany error', err);
-//       } else {
-//         console.log('finished populating');
-//       }
-//     });
-//   },
-// );
+conn.collection('menus').drop(
+  () => {
+    console.log('collection dropped!');
+    for (let i = 1; i < 101; i++) {
+      const menu = createMenu(i);
+      allMenus.push(menu);
+    }
+    Menu.insertMany(allMenus, (err) => {
+      if (err) {
+        console.log('this is insertMany error', err);
+      } else {
+        console.log('finished populating');
+      }
+    });
+  },
+);
 
 const findMenu = (id) => {
   return Menu.find({ id });

@@ -4,6 +4,7 @@ import MealOption from './MealOption';
 import Category from './Category';
 import sample from '../database/sampleData';
 import HideButton from './HideButton';
+import styles from './css_modules/app.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,16 +20,16 @@ class App extends React.Component {
   }
 
   // gets menu data as soon as page renders
-  // componentDidMount() {
-  //   this.getMenuData(() => {
-  //     const { menuData } = this.state;
-  //     const mealOptions = Object.keys(menuData[0]);
-  //     const meal0 = { [mealOptions[0]]: true };
-  //     const memo = mealOptions.map((meal) => ({ [meal]: false }));
-  //     memo[0] = meal0;
-  //     this.setState({ menuView: memo });
-  //   });
-  // }
+  componentDidMount() {
+    this.getMenuData(() => {
+      const { menuData } = this.state;
+      const mealOptions = Object.keys(menuData[0]);
+      const meal0 = { [mealOptions[0]]: true };
+      const memo = mealOptions.map((meal) => ({ [meal]: false }));
+      memo[0] = meal0;
+      this.setState({ menuView: memo });
+    });
+  }
 
   // get menu data from server
   getMenuData(cb = null) {
@@ -70,9 +71,7 @@ class App extends React.Component {
     let mealTime2 = [];
     menuView.forEach((meal) => {
       const mealKey = Object.keys(meal);
-      console.log('mealKey', mealKey);
       if (meal[mealKey[0]] === true) {
-        console.log(menuData[0][mealKey[0]]);
         const categories = Object.entries(menuData[0][mealKey[0]]);
         const categories1 = categories.slice(0, 2);
         const categories2 = categories.slice(2, categories.length);
@@ -82,7 +81,7 @@ class App extends React.Component {
           return (
             <div>
               <Category category={category[0]} dishes={dishes} />
-              <br />
+              <hr />
             </div>
           );
         });
@@ -93,7 +92,7 @@ class App extends React.Component {
             return (
               <div>
                 <Category category={category[0]} dishes={dishes} />
-                <br />
+                <hr />
               </div>
             );
           });
@@ -102,12 +101,34 @@ class App extends React.Component {
     });
 
     return (
-      <div>
-        {meals.map(
-          (meal) => <MealOption changeMeal={this.handleViewChange} menuOption={meal[0]} />,
-        )}
-        {mealTime}
-        {mealTime2}
+      <div className={styles.masterContainer}>
+        <h1>Menu</h1>
+        <div>
+          <hr />
+          <div className={styles.mealOptions}>
+            {meals.map(
+              (meal) => {
+                let bool;
+                menuView.map((piece) => {
+                  const b = Object.entries(piece);
+                  if (b[0][0] === meal[0]) {
+                    // eslint-disable-next-line prefer-destructuring
+                    bool = b[0][1];
+                  }
+                  return bool;
+                });
+                return (
+                  <MealOption selected={bool} changeMeal={this.handleViewChange} menuOption={meal[0]} />
+                );
+              },
+            )}
+          </div>
+          <hr />
+        </div>
+        <div className={visibility[1] ? styles.meals2 : styles.meals}>
+          {mealTime}
+          {mealTime2}
+        </div>
         <HideButton handleVisibility={this.handleVisibility} visibility={visibility[0]} />
       </div>
     );
