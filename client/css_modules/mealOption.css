@@ -1,4 +1,4 @@
-.btn {
+.unselected {
   margin-right: 16px;
   background-color: #fff;
   margin-top: 16px;
@@ -7,6 +7,21 @@
   border: 1px solid #d8d9db;
   padding: calc(8px - 1px) calc(16px - 1px);
   border-radius: 2px;
+}
+
+.selected {
+  margin-right: 16px;
+  background-color: #fff;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #2d333f;
+  border: 2px solid #da3743;
+  padding: calc(8px - 1px) calc(16px - 1px);
+  border-radius: 2px;
+}
+
+button:focus {
+  outline:0;
 }
 
 @font-face {

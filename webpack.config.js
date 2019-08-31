@@ -36,7 +36,9 @@ module.exports = {
       },
       {
         test: /\.(otf)$/i,
-        loader: 'url-loader',
+        use: {
+          loader: 'url-loader',
+        },
       },
     ],
   },

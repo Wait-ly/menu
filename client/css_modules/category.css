@@ -1,0 +1,13 @@
+.name {
+  font-family: 'brandon-text';
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'brandon-text';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Thin.otf') format('opentype');
+}

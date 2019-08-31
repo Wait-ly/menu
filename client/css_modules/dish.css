@@ -1,0 +1,36 @@
+.name {
+  font-family: 'brandon-text-med';
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+
+}
+
+.description {
+  font-family: 'brandon-text-reg';
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@font-face {
+  font-family: 'brandon-text-med';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'brandon-text-reg';
+  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
+}
