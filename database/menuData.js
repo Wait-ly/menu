@@ -47,7 +47,7 @@ const createMenu = (id) => {
       menu[meals[i]] = createMeal();
     }
     return menu;
-  }
+  };
 
   return createAMenu();
 };

@@ -27,10 +27,10 @@
 
 @font-face {
   font-family: 'brandon-text-med';
-  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');
+  src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'brandon-text-reg';
-  src: url('/Users/wesleyluk/fec/Menu/client/css_modules/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
+  src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Regular.otf') format('opentype');
 }
