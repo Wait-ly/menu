@@ -5,7 +5,7 @@ const db = require('../database/populate.js');
 
 const { findMenu } = db;
 const app = express();
-const port = 3000;
+const port = 3004;
 
 app.use(morgan());
 app.use(bodyParser.json());
