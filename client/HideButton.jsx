@@ -3,7 +3,7 @@ import styles from './css_modules/hideButton.css';
 
 class HideButton extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       hovered: false,
     };
