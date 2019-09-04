@@ -11,10 +11,17 @@ app.use(morgan());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
 app.use('/:L/menu', express.static('./public'));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); 
+  next();
+});
 
 app.get('/api/:L/menu', (req, res) => {
   const menuId = req.params.L;
+  console.log(menuId)
   findMenu(menuId)
     .then((result) => {
       const memo = [{}];
