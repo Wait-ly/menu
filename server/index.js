@@ -11,10 +11,11 @@ app.use(morgan());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static('./public'));
+app.use('/:L/menu', express.static('./public'));
 
-app.get('/api/L7/menu', (req, res) => {
-  findMenu(7)
+app.get('/api/:L/menu', (req, res) => {
+  const menuId = req.params.L;
+  findMenu(menuId)
     .then((result) => {
       const memo = [{}];
       const entries = Object.entries(result[0]);
