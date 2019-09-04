@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const db = require('../database/populate.js');
+const db = require('../database/database.js');
 
 const { findMenu } = db;
 const app = express();

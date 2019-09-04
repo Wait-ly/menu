@@ -32,9 +32,3 @@ conn.collection('menus').drop(
     });
   },
 );
-
-const findMenu = (id) => {
-  return Menu.find({ id });
-};
-
-module.exports = { findMenu };
