@@ -6,7 +6,7 @@ import sample from '../database/sampleData';
 import HideButton from './HideButton';
 import styles from './css_modules/app.css';
 
-class App extends React.Component {
+class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +34,7 @@ class App extends React.Component {
   // get menu data from server
   getMenuData(cb = null) {
     const id = window.location.pathname.split('/')[1];
-    $.get('api/' + (id === undefined ? '1' : id) + '/menu', (result) => {
+    $.get('localhost:3000/api/' + (id === undefined ? '1' : id) + '/menu', (result) => {
       this.setState({ menuData: result }, () => cb());
     });
   }
@@ -136,4 +136,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+window.menu = Menu;
+console.log(window);
+export default Menu;
