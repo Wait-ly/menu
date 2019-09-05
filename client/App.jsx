@@ -10,7 +10,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuData: sample, // array
+      menu: sample, // array
       menuView: [{ Brunch: true }, { Dinner: false }],
       visibility: ['View full menu', false],
     };
@@ -22,8 +22,8 @@ class Menu extends React.Component {
   // gets menu data as soon as page renders
   componentDidMount() {
     this.getMenuData(() => {
-      const { menuData } = this.state;
-      const mealOptions = Object.keys(menuData[0]);
+      const { menu } = this.state;
+      const mealOptions = Object.keys(menu[0]);
       const meal0 = { [mealOptions[0]]: true };
       const memo = mealOptions.map((meal) => ({ [meal]: false }));
       memo[0] = meal0;
@@ -36,7 +36,7 @@ class Menu extends React.Component {
   getMenuData(cb = null) {
     const id = window.location.pathname.split('/')[1].slice(1);
     $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
-      this.setState({ menuData: result }, () => cb());
+      this.setState({ menu: result }, () => cb());
     });
   }
 
@@ -66,15 +66,15 @@ class Menu extends React.Component {
 
 
   render() {
-    const { menuData, menuView, visibility } = this.state;
-    const meals = Object.entries(menuData[0]);
+    const { menu, menuView, visibility } = this.state;
+    const meals = Object.entries(menu[0]);
     // handles conditional rendering
     let mealTime;
     let mealTime2 = [];
     menuView.forEach((meal) => {
       const mealKey = Object.keys(meal);
       if (meal[mealKey[0]] === true) {
-        const categories = Object.entries(menuData[0][mealKey[0]]);
+        const categories = Object.entries(menu[0][mealKey[0]]);
         const categories1 = categories.slice(0, 2);
         const categories2 = categories.slice(2, categories.length);
 
