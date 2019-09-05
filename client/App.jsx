@@ -10,8 +10,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: sample, // array
-      menuView: [{ Brunch: true }, { Dinner: false }],
+      menu: sample[0],
       selectedMealOption: 'Brunch',
       fullMenuIsVisible: false,
     };
@@ -23,28 +22,20 @@ class Menu extends React.Component {
 
   // gets menu data as soon as page renders
   componentDidMount() {
-    this.getMenuData(() => {
-      const { menu } = this.state;
-      const mealOptions = Object.keys(menu[0]);
-      const meal0 = { [mealOptions[0]]: true };
-      const memo = mealOptions.map((meal) => ({ [meal]: false }));
-      memo[0] = meal0;
-      console.log('this is state: ', this.state)
-      this.setState({ menuView: memo });
-    });
+    this.getMenuData();
   }
 
   // get menu data from server
-  getMenuData(cb = null) {
+  getMenuData() {
     const id = window.location.pathname.split('/')[1].slice(1);
     $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
-      this.setState({ menu: result }, () => cb());
+      this.setState({ menu: result[0] });
     });
   }
 
   getMealOptionList() {
     const { menu } = this.state;
-    return Object.keys(menu[0]);
+    return Object.keys(menu);
   }
 
   // handles button click changing states
@@ -64,59 +55,37 @@ class Menu extends React.Component {
 
 
   render() {
-    const { menu, menuView, fullMenuIsVisible, selectedMealOption } = this.state;
-    const meals = Object.entries(menu[0]);
+    const { menu, fullMenuIsVisible, selectedMealOption } = this.state;
     const mealOptions = this.getMealOptionList();
-    // handles conditional rendering
-    let mealTime;
-    let mealTime2 = [];
-    menuView.forEach((meal) => {
-      const mealKey = Object.keys(meal);
-      if (meal[mealKey[0]] === true) {
-        const categories = Object.entries(menu[0][mealKey[0]]);
-        const categories1 = categories.slice(0, 2);
-        const categories2 = categories.slice(2, categories.length);
-
-        mealTime = categories1.map((category) => {
-          const dishes = Object.entries(category[1]);
-          return (
-            <div>
-              <Category category={category[0]} dishes={dishes} />
-              <hr />
-            </div>
-          );
-        });
-
-        if (fullMenuIsVisible === true) {
-          mealTime2 = categories2.map((category) => {
-            const dishes = Object.entries(category[1]);
-            return (
-              <div>
-                <Category category={category[0]} dishes={dishes} />
-                <hr />
-              </div>
-            );
-          });
-        }
-      }
-    });
-
+    const categories = menu[selectedMealOption];
     return (
       <div className={styles.masterContainer}>
-          <h1>Menu</h1>
+        <h1>Menu</h1>
         <div className={styles.jrContainer}>
           <hr />
           <div className={styles.mealOptions}>
-            { mealOptions.map((mealOption) => {
-              return <MealOption selected={selectedMealOption === mealOption} changeMeal={this.handleViewChange} mealOption={mealOption} />;
-            })
+            {
+              mealOptions.map((mealOption) => (
+                <MealOption
+                  selected={selectedMealOption === mealOption}
+                  changeMeal={this.handleViewChange}
+                  mealOption={mealOption}
+                />
+              ))
             }
           </div>
           <hr />
         </div>
         <div className={fullMenuIsVisible ? styles.meals2 : styles.meals}>
-          {mealTime}
-          {mealTime2}
+          {Object.keys(categories).map((categoryName) => {
+            const dishes = categories[categoryName];
+            return (
+              <div>
+                <Category categoryName={categoryName} dishes={dishes} />
+                <hr />
+              </div>
+            );
+          })}
         </div>
         <div className={styles.hideButton}>
           <HideButton handleVisibility={this.handleVisibility} fullMenuIsVisible={fullMenuIsVisible} />
