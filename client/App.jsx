@@ -48,17 +48,8 @@ class Menu extends React.Component {
   }
 
   // handles button click changing states
-  handleViewChange(curr) {
-    const { menuView } = this.state;
-    const views = menuView.map((meal) => {
-      const mealKey = Object.keys(meal);
-      if (mealKey[0] === curr) {
-        return { [curr]: true };
-      }
-      return { [mealKey]: false };
-    });
-
-    this.setState({ menuView: views });
+  handleViewChange(mealOption) {
+    this.setState({ selectedMealOption: mealOption });
   }
 
   // handles rendering the bottom half of the menu
@@ -73,7 +64,7 @@ class Menu extends React.Component {
 
 
   render() {
-    const { menu, menuView, fullMenuIsVisible } = this.state;
+    const { menu, menuView, fullMenuIsVisible, selectedMealOption } = this.state;
     const meals = Object.entries(menu[0]);
     const mealOptions = this.getMealOptionList();
     // handles conditional rendering
@@ -117,7 +108,7 @@ class Menu extends React.Component {
           <hr />
           <div className={styles.mealOptions}>
             { mealOptions.map((mealOption) => {
-              return <MealOption selected={false} changeMeal={this.handleViewChange} mealOption={mealOption} />;
+              return <MealOption selected={selectedMealOption === mealOption} changeMeal={this.handleViewChange} mealOption={mealOption} />;
             })
             }
           </div>
