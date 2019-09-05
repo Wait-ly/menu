@@ -12,7 +12,7 @@ class Menu extends React.Component {
     this.state = {
       menu: sample, // array
       menuView: [{ Brunch: true }, { Dinner: false }],
-      visibility: ['View full menu', false],
+      fullMenuIsVisible: false,
     };
     this.getMenuData = this.getMenuData.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -56,17 +56,17 @@ class Menu extends React.Component {
 
   // handles rendering the bottom half of the menu
   handleVisibility() {
-    const { visibility } = this.state;
-    if (visibility[1] === true) {
-      this.setState({ visibility: ['View full menu', false] });
+    const { fullMenuIsVisible } = this.state;
+    if (fullMenuIsVisible === true) {
+      this.setState({ fullMenuIsVisible: false });
     } else {
-      this.setState({ visibility: ['Collapse Menu', true] });
+      this.setState({ fullMenuIsVisible: true });
     }
   }
 
 
   render() {
-    const { menu, menuView, visibility } = this.state;
+    const { menu, menuView, fullMenuIsVisible } = this.state;
     const meals = Object.entries(menu[0]);
     // handles conditional rendering
     let mealTime;
@@ -88,7 +88,7 @@ class Menu extends React.Component {
           );
         });
 
-        if (visibility[1] === true) {
+        if (fullMenuIsVisible === true) {
           mealTime2 = categories2.map((category) => {
             const dishes = Object.entries(category[1]);
             return (
@@ -127,12 +127,12 @@ class Menu extends React.Component {
           </div>
           <hr />
         </div>
-        <div className={visibility[1] ? styles.meals2 : styles.meals}>
+        <div className={fullMenuIsVisible ? styles.meals2 : styles.meals}>
           {mealTime}
           {mealTime2}
         </div>
         <div className={styles.hideButton}>
-          <HideButton handleVisibility={this.handleVisibility} visibility={visibility[0]} />
+          <HideButton handleVisibility={this.handleVisibility} fullMenuIsVisible={fullMenuIsVisible} />
         </div>
       </div>
     );
