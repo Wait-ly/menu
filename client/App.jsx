@@ -12,11 +12,13 @@ class Menu extends React.Component {
     this.state = {
       menu: sample, // array
       menuView: [{ Brunch: true }, { Dinner: false }],
+      selectedMealOption: 'Brunch',
       fullMenuIsVisible: false,
     };
     this.getMenuData = this.getMenuData.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleVisibility = this.handleVisibility.bind(this);
+    this.getMealOptionList = this.getMealOptionList.bind(this);
   }
 
   // gets menu data as soon as page renders
@@ -38,6 +40,11 @@ class Menu extends React.Component {
     $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
       this.setState({ menu: result }, () => cb());
     });
+  }
+
+  getMealOptionList() {
+    const { menu } = this.state;
+    return Object.keys(menu[0]);
   }
 
   // handles button click changing states
@@ -68,6 +75,7 @@ class Menu extends React.Component {
   render() {
     const { menu, menuView, fullMenuIsVisible } = this.state;
     const meals = Object.entries(menu[0]);
+    const mealOptions = this.getMealOptionList();
     // handles conditional rendering
     let mealTime;
     let mealTime2 = [];
@@ -108,22 +116,10 @@ class Menu extends React.Component {
         <div className={styles.jrContainer}>
           <hr />
           <div className={styles.mealOptions}>
-            {meals.map(
-              (meal) => {
-                let bool;
-                menuView.map((piece) => {
-                  const b = Object.entries(piece);
-                  if (b[0][0] === meal[0]) {
-                    // eslint-disable-next-line prefer-destructuring
-                    bool = b[0][1];
-                  }
-                  return bool;
-                });
-                return (
-                  <MealOption selected={bool} changeMeal={this.handleViewChange} menuOption={meal[0]} />
-                );
-              },
-            )}
+            { mealOptions.map((mealOption) => {
+              return <MealOption selected={false} changeMeal={this.handleViewChange} mealOption={mealOption} />;
+            })
+            }
           </div>
           <hr />
         </div>
