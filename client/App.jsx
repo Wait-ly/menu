@@ -27,6 +27,7 @@ class Menu extends React.Component {
       const meal0 = { [mealOptions[0]]: true };
       const memo = mealOptions.map((meal) => ({ [meal]: false }));
       memo[0] = meal0;
+      console.log('this is state: ', this.state)
       this.setState({ menuView: memo });
     });
   }
@@ -103,8 +104,8 @@ class Menu extends React.Component {
 
     return (
       <div className={styles.masterContainer}>
-        <h1>Menu</h1>
-        <div>
+          <h1>Menu</h1>
+        <div className={styles.jrContainer}>
           <hr />
           <div className={styles.mealOptions}>
             {meals.map(
@@ -130,7 +131,9 @@ class Menu extends React.Component {
           {mealTime}
           {mealTime2}
         </div>
-        <HideButton handleVisibility={this.handleVisibility} visibility={visibility[0]} />
+        <div className={styles.hideButton}>
+          <HideButton handleVisibility={this.handleVisibility} visibility={visibility[0]} />
+        </div>
       </div>
     );
   }

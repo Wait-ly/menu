@@ -21,7 +21,6 @@ app.use(function(req, res, next) {
 
 app.get('/api/:L/menu', (req, res) => {
   const menuId = req.params.L;
-  console.log(menuId)
   findMenu(menuId)
     .then((result) => {
       const memo = [{}];
