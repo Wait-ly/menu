@@ -12,10 +12,8 @@ const Category = (props) => {
     <div>
       <h3 className={styles.name}>{categoryName}</h3>
       <br />
-
       <div className={styles.dishContainer}>
         <div>
-
           {dishes1.map(
             (dish) => (
               <div>
@@ -26,7 +24,6 @@ const Category = (props) => {
           )}
         </div>
         <div>
-
           {dishes2.map(
             (dish) => (
               <div>

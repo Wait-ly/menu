@@ -25,17 +25,17 @@ class Menu extends React.Component {
     this.getMenuData();
   }
 
+  getMealOptionList() {
+    const { menu } = this.state;
+    return Object.keys(menu);
+  }
+
   // get menu data from server
   getMenuData() {
     const id = window.location.pathname.split('/')[1].slice(1);
     $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
-      this.setState({ menu: result[0] });
+      this.setState({ menu: result[0] }, () => { this.handleViewChange(this.getMealOptionList()[0]); });
     });
-  }
-
-  getMealOptionList() {
-    const { menu } = this.state;
-    return Object.keys(menu);
   }
 
   // handles button click changing states
@@ -58,6 +58,7 @@ class Menu extends React.Component {
     const { menu, fullMenuIsVisible, selectedMealOption } = this.state;
     const mealOptions = this.getMealOptionList();
     const categories = menu[selectedMealOption];
+    // if (!categories) debugger;
     return (
       <div className={styles.masterContainer}>
         <h1>Menu</h1>
@@ -76,6 +77,7 @@ class Menu extends React.Component {
           </div>
           <hr />
         </div>
+          {console.log('SANITY CHECK:', fullMenuIsVisible, styles.meals2, styles.meals)}
         <div className={fullMenuIsVisible ? styles.meals2 : styles.meals}>
           {Object.keys(categories).map((categoryName) => {
             const dishes = categories[categoryName];
