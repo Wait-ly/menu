@@ -17,13 +17,13 @@ class MealOption extends React.Component {
   }
 
   render() {
-    const { menuOption, changeMeal, selected } = this.props;
+    const { mealOption, changeMeal, selected } = this.props;
     const { toggled } = this.state;
     let select;
     if (!selected) {
-      select = <button type="button" className={styles.unselected} onClick={() => changeMeal(menuOption)}>{ menuOption }</button>;
+      select = <button type="button" className={styles.unselected} onClick={() => changeMeal(mealOption)}>{ mealOption }</button>;
     } else {
-      select = <button type="button" className={styles.selected} onClick={() => changeMeal(menuOption)}>{ menuOption }</button>;
+      select = <button type="button" className={styles.selected} onClick={() => changeMeal(mealOption)}>{ mealOption }</button>;
     }
     return (
       <div>

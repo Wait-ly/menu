@@ -16,10 +16,11 @@ class HideButton extends React.Component {
   }
 
   render() {
-    const { visibility, handleVisibility } = this.props;
+    const { fullMenuIsVisible, handleVisibility } = this.props;
     const { hovered } = this.state;
+
     return (
-      <button type="button" onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnHover} className={hovered ? styles.hovered : styles.unhovered} onClick={() => handleVisibility()}>{visibility}</button>
+      <button type="button" onMouseEnter={this.handleOnHover} onMouseLeave={this.handleOnHover} className={hovered ? styles.hovered : styles.unhovered} onClick={() => handleVisibility()}>{fullMenuIsVisible ? 'Hide Menu' : 'Show Full Menu'}</button>
     );
   }
 }

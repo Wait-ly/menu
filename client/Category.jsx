@@ -3,18 +3,17 @@ import Dish from './Dish';
 import styles from './css_modules/category.css';
 
 const Category = (props) => {
-  const { dishes, category } = props;
-  const mid = Math.floor(dishes.length / 2);
-  const dishes1 = dishes.slice(0, mid);
-  const dishes2 = dishes.slice(mid);
+  const { categoryName, dishes } = props;
+  const dishesArr = Object.entries(dishes);
+  const mid = Math.floor(dishesArr.length / 2);
+  const dishes1 = dishesArr.slice(0, mid);
+  const dishes2 = dishesArr.slice(mid);
   return (
     <div>
-      <h3 className={styles.name}>{category}</h3>
+      <h3 className={styles.name}>{categoryName}</h3>
       <br />
-
       <div className={styles.dishContainer}>
         <div>
-
           {dishes1.map(
             (dish) => (
               <div>
@@ -25,7 +24,6 @@ const Category = (props) => {
           )}
         </div>
         <div>
-
           {dishes2.map(
             (dish) => (
               <div>
