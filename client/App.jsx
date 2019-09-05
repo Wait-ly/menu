@@ -34,7 +34,7 @@ class Menu extends React.Component {
   // get menu data from server
   getMenuData(cb = null) {
     const id = window.location.pathname.split('/')[1].slice(1);
-    $.get('http://localhost:3004/api/' + (id === undefined ? '1' : id) + '/menu', (result) => {
+    $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
       this.setState({ menuData: result }, () => cb());
     });
   }

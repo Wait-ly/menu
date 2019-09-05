@@ -6,7 +6,7 @@ const Dish = (props) => {
   const caps = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
-    <div>
+    <div className={styles.masterContainer}>
       <div className={styles.container}>
         <h3 className={styles.name}>{ caps }</h3>
         <div className={styles.name}>{ `$${price}` }</div>
