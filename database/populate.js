@@ -1,10 +1,11 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const { createMenu } = require('./menuData.js');
 
 const menuSchema = new mongoose.Schema({ any: {}, id: Number }, { strict: false });
 
-const conn = mongoose.createConnection('mongodb://localhost:27017/menu',
+const conn = mongoose.createConnection('mongodb://database/menu',
   (err) => {
     if (err) {
       console.log(err);
@@ -28,6 +29,7 @@ conn.collection('menus').drop(
         console.log('this is insertMany error', err);
       } else {
         console.log('finished populating');
+        mongoose.disconnect();
       }
     });
   },
