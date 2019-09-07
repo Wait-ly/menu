@@ -4,6 +4,8 @@
   justify-content: center;
   flex-direction: column;
   align-items: left;
+  position: relative;
+  left: 15%;
 }
 
 h1 {

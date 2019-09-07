@@ -33,8 +33,9 @@ class Menu extends React.Component {
   // get menu data from server
   getMenuData() {
     const id = window.location.pathname.split('/')[1].slice(1);
-    $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
-      this.setState({ menu: result[0] }, () => { this.handleViewChange(this.getMealOptionList()[0]); });
+    $.get(`http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
+      this.setState({ menu: result[0] },
+        () => { this.handleViewChange(this.getMealOptionList()[0]); });
     });
   }
 
@@ -77,7 +78,6 @@ class Menu extends React.Component {
           </div>
           <hr />
         </div>
-          {console.log('SANITY CHECK:', fullMenuIsVisible, styles.meals2, styles.meals)}
         <div className={fullMenuIsVisible ? styles.meals2 : styles.meals}>
           {Object.keys(categories).map((categoryName) => {
             const dishes = categories[categoryName];
@@ -90,7 +90,10 @@ class Menu extends React.Component {
           })}
         </div>
         <div className={styles.hideButton}>
-          <HideButton handleVisibility={this.handleVisibility} fullMenuIsVisible={fullMenuIsVisible} />
+          <HideButton
+            handleVisibility={this.handleVisibility}
+            fullMenuIsVisible={fullMenuIsVisible}
+          />
         </div>
       </div>
     );

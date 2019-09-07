@@ -173,7 +173,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var id = window.location.pathname.split('/')[1].slice(1);
-      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://localhost:3004/api/".concat(id === undefined ? '1' : id, "/menu"), function (result) {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/".concat(id === undefined ? '1' : id, "/menu"), function (result) {
         _this2.setState({
           menu: result[0]
         }, function () {
@@ -229,7 +229,7 @@ function (_React$Component) {
           changeMeal: _this3.handleViewChange,
           mealOption: mealOption
         });
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), console.log('SANITY CHECK:', fullMenuIsVisible, _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals2, _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: fullMenuIsVisible ? _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals2 : _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals
       }, Object.keys(categories).map(function (categoryName) {
         var dishes = categories[categoryName];
@@ -1028,7 +1028,7 @@ var sample = [{
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".client-css_modules-app__masterContainer--1XEzj {\n  display: flex;\n  align-content: center;\n  justify-content: center;\n  flex-direction: column;\n  align-items: left;\n}\n\nh1 {\n  display: flex;\n  font-family: 'brandon-text';\n  margin: 10px;\n  width: 500px;\n  justify-content: center;\n}\n\nhr {\n  color: #d8d9db;\n  border-width: 0;\n  height: 1px;\n  background-color:#d8d9db;\n}\n\n.client-css_modules-app__meals--1Ubnd {\n  padding: 25px;\n  -webkit-mask-image: -webkit-gradient(linear, left top,\n  left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));\n  height: 350px;\n  width: 500px;\n}\n\n.client-css_modules-app__meals2--3K88q {\n  padding: 25px;\n  width: 500px;\n}\n\n.client-css_modules-app__mealOptions--1R0DC {\n  display: flex;\n  align-content: center;\n  width: 500px;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.client-css_modules-app__jrContainer--1Qlun {\n  width: 500px;\n}\n\n@font-face {\n  font-family: 'brandon-text';\n  src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');\n}\n\n.client-css_modules-app__hideButton--2Qdu0 {\n  display: flex;\n  align-content: center;\n  width: 500px;\n  justify-content: center;\n}", ""]);
+exports.push([module.i, ".client-css_modules-app__masterContainer--1XEzj {\n  display: flex;\n  align-content: center;\n  justify-content: center;\n  flex-direction: column;\n  align-items: left;\n  position: relative;\n  left: 15%;\n}\n\nh1 {\n  display: flex;\n  font-family: 'brandon-text';\n  margin: 10px;\n  width: 500px;\n  justify-content: center;\n}\n\nhr {\n  color: #d8d9db;\n  border-width: 0;\n  height: 1px;\n  background-color:#d8d9db;\n}\n\n.client-css_modules-app__meals--1Ubnd {\n  padding: 25px;\n  -webkit-mask-image: -webkit-gradient(linear, left top,\n  left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));\n  height: 350px;\n  width: 500px;\n}\n\n.client-css_modules-app__meals2--3K88q {\n  padding: 25px;\n  width: 500px;\n}\n\n.client-css_modules-app__mealOptions--1R0DC {\n  display: flex;\n  align-content: center;\n  width: 500px;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.client-css_modules-app__jrContainer--1Qlun {\n  width: 500px;\n}\n\n@font-face {\n  font-family: 'brandon-text';\n  src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');\n}\n\n.client-css_modules-app__hideButton--2Qdu0 {\n  display: flex;\n  align-content: center;\n  width: 500px;\n  justify-content: center;\n}", ""]);
 // Exports
 exports.locals = {
 	"masterContainer": "client-css_modules-app__masterContainer--1XEzj",
