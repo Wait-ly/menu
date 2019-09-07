@@ -2,7 +2,7 @@ version: '3'
 
 services:
   menu:
-    build: .
+    image: wluk37/menu_menu
     volumes:
       - ./:/src/app
     depends_on:
