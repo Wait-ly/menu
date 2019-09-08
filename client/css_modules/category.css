@@ -1,10 +1,10 @@
-@font-face {
+/* @font-face {
   font-family: 'brandon-text';
   src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Thin.otf') format('opentype');
-}
+} */
 
 .name {
-  font-family: 'brandon-text';
+  /* font-family: 'brandon-text'; */
   margin: 0;
   font-size: 16px;
   line-height: 24px;

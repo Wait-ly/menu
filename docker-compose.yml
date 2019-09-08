@@ -2,9 +2,7 @@ version: '3'
 
 services:
   menu:
-    image: wluk37/menu_menu
-    volumes:
-      - ./:/src/app
+    build: .
     depends_on:
       - 'database'
     ports:

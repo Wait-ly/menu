@@ -1,5 +1,5 @@
 .name {
-  font-family: 'brandon-text-med';
+  /* font-family: 'brandon-text-med'; */
   margin: 0;
   padding-right: 25px;
   font-size: 14px;
@@ -9,7 +9,7 @@
 }
 
 .description {
-  font-family: 'brandon-text-reg';
+  /* font-family: 'brandon-text-reg'; */
   margin-top: 8px;
   margin-bottom: 0;
   font-weight: 400;
@@ -31,7 +31,8 @@
   width: 250px;
   flex-direction: column;
 }
-@font-face {
+
+/* @font-face {
   font-family: 'brandon-text-med';
   src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');
 }
@@ -39,4 +40,4 @@
 @font-face {
   font-family: 'brandon-text-reg';
   src: url('/Users/wesleyluk/fec/Menu/public/Brandon Text/HVD Fonts - BrandonText-Medium.otf') format('opentype');
-}
+} */

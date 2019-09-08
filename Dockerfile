@@ -10,4 +10,4 @@ RUN npm install
 
 EXPOSE 3004
 
-CMD npm run seed && npm start
+CMD npm start

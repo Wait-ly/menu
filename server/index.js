@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const compression = require('compression');
 const db = require('../database/database.js');
 
 const { findMenu } = db;
 const app = express();
 const port = 3004;
 
+app.use(compression());
 app.use(morgan());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
