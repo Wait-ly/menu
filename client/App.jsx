@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import MealOption from './MealOption';
 import Category from './Category';
-import sample from '../database/sampleData';
+// import sample from '../database/sampleData';
 import HideButton from './HideButton';
 import styles from './css_modules/app.css';
 
@@ -10,9 +10,10 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: sample[0],
-      selectedMealOption: 'Brunch',
+      menu: undefined,
+      selectedMealOption: undefined,
       fullMenuIsVisible: false,
+      isLoading: true,
     };
     this.getMenuData = this.getMenuData.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -21,22 +22,22 @@ class Menu extends React.Component {
   }
 
   // gets menu data as soon as page renders
+  // eslint-disable-next-line camelcase
   componentDidMount() {
     this.getMenuData();
-  }
-
-  getMealOptionList() {
-    const { menu } = this.state;
-    return Object.keys(menu);
   }
 
   // get menu data from server
   getMenuData() {
     const id = window.location.pathname.split('/')[1].slice(1);
-    $.get(`http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
-      this.setState({ menu: result[0] },
-        () => { this.handleViewChange(this.getMealOptionList()[0]); });
+    $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
+      const selectedMealOption = this.getMealOptionList(result[0])[0];
+      this.setState({ menu: result[0], selectedMealOption, isLoading: false }, () => console.log('5'));
     });
+  }
+
+  static getMealOptionList(inputMenu = this.state.menu) {
+    return Object.keys(inputMenu);
   }
 
   // handles button click changing states
@@ -56,25 +57,26 @@ class Menu extends React.Component {
 
 
   render() {
-    const { menu, fullMenuIsVisible, selectedMealOption } = this.state;
-    const mealOptions = this.getMealOptionList();
-    const categories = menu[selectedMealOption];
-    // if (!categories) debugger;
-    return (
+    const {
+      menu, fullMenuIsVisible, selectedMealOption, isLoading,
+    } = this.state;
+    const mealOptions = isLoading ? undefined : this.getMealOptionList();
+    const categories = isLoading ? undefined : menu[selectedMealOption];
+    const fetchedMenu = isLoading ? <div /> : (
       <div className={styles.masterContainer}>
         <h1>Menu</h1>
         <div className={styles.jrContainer}>
           <hr />
           <div className={styles.mealOptions}>
             {
-              mealOptions.map((mealOption) => (
-                <MealOption
-                  selected={selectedMealOption === mealOption}
-                  changeMeal={this.handleViewChange}
-                  mealOption={mealOption}
-                />
-              ))
-            }
+          mealOptions.map((mealOption) => (
+            <MealOption
+              selected={selectedMealOption === mealOption}
+              changeMeal={this.handleViewChange}
+              mealOption={mealOption}
+            />
+          ))
+        }
           </div>
           <hr />
         </div>
@@ -95,6 +97,11 @@ class Menu extends React.Component {
             fullMenuIsVisible={fullMenuIsVisible}
           />
         </div>
+      </div>
+    );
+    return (
+      <div>
+        { fetchedMenu }
       </div>
     );
   }
