@@ -5,7 +5,7 @@ const { createMenu } = require('./menuData.js');
 
 const menuSchema = new mongoose.Schema({ any: {}, id: Number }, { strict: false });
 
-const conn = mongoose.createConnection('mongodb://localhost:27017/menu',
+const conn = mongoose.createConnection('mongodb://database/menu',
   (err) => {
     if (err) {
       console.log(err);

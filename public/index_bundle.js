@@ -168,21 +168,26 @@ function (_React$Component) {
       var _this2 = this;
 
       var id = window.location.pathname.split('/')[1].slice(1);
-      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://localhost:3004/api/".concat(id === undefined ? '1' : id, "/menu"), function (result) {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/".concat(id === undefined ? '1' : id, "/menu"), function (result) {
         var selectedMealOption = _this2.getMealOptionList(result[0])[0];
 
         _this2.setState({
           menu: result[0],
           selectedMealOption: selectedMealOption,
           isLoading: false
-        }, function () {
-          return console.log('5');
         });
       });
-    }
+    } // eslint-disable-next-line react/destructuring-assignment
+
+  }, {
+    key: "getMealOptionList",
+    value: function getMealOptionList() {
+      var inputMenu = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state.menu;
+      return Object.keys(inputMenu);
+    } // handles button click changing states
+
   }, {
     key: "handleViewChange",
-    // handles button click changing states
     value: function handleViewChange(mealOption) {
       this.setState({
         selectedMealOption: mealOption
@@ -243,12 +248,6 @@ function (_React$Component) {
         fullMenuIsVisible: fullMenuIsVisible
       })));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, fetchedMenu);
-    }
-  }], [{
-    key: "getMealOptionList",
-    value: function getMealOptionList() {
-      var inputMenu = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state.menu;
-      return Object.keys(inputMenu);
     }
   }]);
 

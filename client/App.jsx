@@ -30,13 +30,14 @@ class Menu extends React.Component {
   // get menu data from server
   getMenuData() {
     const id = window.location.pathname.split('/')[1].slice(1);
-    $.get(`http://localhost:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
+    $.get(`http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/${id === undefined ? '1' : id}/menu`, (result) => {
       const selectedMealOption = this.getMealOptionList(result[0])[0];
-      this.setState({ menu: result[0], selectedMealOption, isLoading: false }, () => console.log('5'));
+      this.setState({ menu: result[0], selectedMealOption, isLoading: false });
     });
   }
 
-  static getMealOptionList(inputMenu = this.state.menu) {
+  // eslint-disable-next-line react/destructuring-assignment
+  getMealOptionList(inputMenu = this.state.menu) {
     return Object.keys(inputMenu);
   }
 
