@@ -48,16 +48,16 @@ Description: Creates a menu for the associated business ID (as defined by parame
              Will respond with either 'success' or the error encountered.
              Expects a menu object with the following structure:
 
-`let menu = { 
-  mealType: {
-    category: {
-      dishName: {
-        description: 'Braised lambshank over cauliflower mash',
-        price: 23.95
+    let menu = { 
+      mealType: {
+        category: {
+          dishName: {
+            description: 'Braised lambshank over cauliflower mash',
+            price: 23.95
+          },...
+        },...
       },...
-    },...
-  },...
-}`
+    }
 
 mealType: Breakfast, lunch, dinner, brunch, etc.
 category: Appetizers, Sides, Entrees, Drinks, Desserts, etc.
@@ -129,32 +129,32 @@ For example, given the following menu:
 
 To delete the 'Lamb Shank' entree, the request object would be structured as follows:
 
-`let request = {
-  Dinner: {
-    Entrees: ['Lamb Shank']
-  }
-}`
+    let request = {
+      Dinner: {
+        Entrees: ['Lamb Shank']
+      }
+    }
 
 To delete the drinks section the request would be slightly different:
 
-`let request = {
-  Dinner: {
-    Drinks: 'all'
-  }
-}`
+    let request = {
+      Dinner: {
+        Drinks: 'all'
+      }
+    }
 
 Deleting the 'Desserts' category follows the same structure as deleting a section:
 
-`let request = {
-  Desserts: 'all'
-}`
+    let request = {
+      Desserts: 'all'
+    }
 
 To delete all at the same time:
 
-`let request = {
-  Dinner: {
-    entrees: ['Lamb Shank'],
-    Drinks: 'all'
-  },
-  Desserts: 'all'
-}`
+    let request = {
+      Dinner: {
+        entrees: ['Lamb Shank'],
+        Drinks: 'all'
+      },
+      Desserts: 'all'
+    }
