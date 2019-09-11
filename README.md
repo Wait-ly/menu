@@ -60,9 +60,13 @@ Route: '/api/:L/menu/create'
     }
 
   **mealType**: Breakfast, lunch, dinner, brunch, etc.
+
   **category**: Appetizers, Sides, Entrees, Drinks, Desserts, etc.
+
   **dishName**: Name of a menu item.
+
   **description**: Description of menu item.
+
   **price**: price in $USD of menu item.
 
 ### READ
