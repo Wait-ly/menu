@@ -92,72 +92,72 @@ Description: Deletes a menu, or menu element, from the menu for the specified bu
 
 For example, given the following menu:
 
-  let menu = {
-
-    Dinner: {
-
-      Entrees: {
-
-        'Lamb Shank': {
-
-          description: 'Braised lambshank over cauliflower mash',
-
-          price: 23.95
-
-        },...
-
-      },
-
-      Drinks: {
-
-        'Old Fashioned': {
-
-          description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
-
-          price: 13.50
-
+    let menu = {
+  
+      Dinner: {
+  
+        Entrees: {
+  
+          'Lamb Shank': {
+  
+            description: 'Braised lambshank over cauliflower mash',
+  
+            price: 23.95
+  
+          },...
+  
         },
-
-        'White Wine Spritzer': {
-
-          description: 'Chilled chardonnay, club soda and lime slice'
-
+  
+        Drinks: {
+  
+          'Old Fashioned': {
+  
+            description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
+  
+            price: 13.50
+  
+          },
+  
+          'White Wine Spritzer': {
+  
+            description: 'Chilled chardonnay, club soda and lime slice'
+  
+          },...
+  
         },...
-
-      },...
-
-    },
-
-    Desserts: {
-
-      Wines: {
-
-        'Chocolate Wine': {
-
-          description: 'Traditional dessert wine from the Andes mountains',
-
-          price: 12.50
-
-        },...
-
+  
       },
-
-      'Cold Dishes': {
-
-        'Lemon Tart': {
-
-          description: 'Traditional lemon pie decorated with seasonal fruits',
-
-          price: 8.95
-
+  
+      Desserts: {
+  
+        Wines: {
+  
+          'Chocolate Wine': {
+  
+            description: 'Traditional dessert wine from the Andes mountains',
+  
+            price: 12.50
+  
+          },...
+  
+        },
+  
+        'Cold Dishes': {
+  
+          'Lemon Tart': {
+  
+            description: 'Traditional lemon pie decorated with seasonal fruits',
+  
+            price: 8.95
+  
+          }
+  
         }
-
+  
       }
-
+  
     }
-
-  }
-
+  
 
 
 To delete the 'Lamb Shank' entree, the request object would be structured as follows:
