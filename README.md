@@ -92,7 +92,7 @@ Description: Deletes a menu, or menu element, from the menu for the specified bu
 
 For example, given the following menu:
 
-`let menu = { 
+`let menu = {\n
   Dinner: {
     Entrees: {
       'Lamb Shank': {
