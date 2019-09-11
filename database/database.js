@@ -15,4 +15,17 @@ const Menu = conn.model('Menu', menuSchema);
 
 const findMenu = (id) => Menu.find({ id });
 
-module.exports = { findMenu };
+const createMenu = (menu) => Menu.save(menu);
+
+const getMenu = (id) => Menu.find({ id });
+
+const updateMenu = (menu) => Menu.save(menu);
+
+const deleteMenu = (menu) => Menu.save(menu);
+
+module.exports = { findMenu,
+                    createMenu,
+                    getMenu,
+                    updateMenu,
+                    deleteMenu
+                 };

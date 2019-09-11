@@ -38,6 +38,22 @@ app.get('/api/:L/menu', (req, res) => {
     });
 });
 
+app.get('/api/:L/menu/create', (req, res) => {
+  // Create menu for business with ID 'L'
+});
+
+app.get('/api/:L/menu/read', (req, res) => {
+  // Read menu for business with ID 'L'
+});
+
+app.get('/api/:L/menu/update', (req, res) => {
+  // Update menu for business with ID 'L'
+});
+
+app.get('/api/:L/menu/delete', (req, res) => {
+  // delete menu for business with ID 'L'
+});
+
 
 app.listen(port, () => { console.log(`server ${port} is listening...`); });
 
