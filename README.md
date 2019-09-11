@@ -42,7 +42,7 @@ npm install
 
 Route: '/api/:L/menu/create'
 
-Description: Creates a menu for the associated business ID (as defined by parameter ':L').
+    Description: Creates a menu for the associated business ID (as defined by parameter ':L').
              If a menu is already created for said business it will be overwritten with the menu
              included in the body of the request.
              Will respond with either 'success' or the error encountered.
