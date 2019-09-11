@@ -92,71 +92,71 @@ Description: Deletes a menu, or menu element, from the menu for the specified bu
 
 For example, given the following menu:
 
-let menu = {
+  let menu = {
 
-  Dinner: {
+    Dinner: {
 
-    Entrees: {
+      Entrees: {
 
-      'Lamb Shank': {
+        'Lamb Shank': {
 
-        description: 'Braised lambshank over cauliflower mash',
+          description: 'Braised lambshank over cauliflower mash',
 
-        price: 23.95
+          price: 23.95
 
-      },...
-
-    },
-
-    Drinks: {
-
-      'Old Fashioned': {
-
-        description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
-
-        price: 13.50
+        },...
 
       },
 
-      'White Wine Spritzer': {
+      Drinks: {
 
-        description: 'Chilled chardonnay, club soda and lime slice'
+        'Old Fashioned': {
 
-      },...
+          description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
 
-    },...
+          price: 13.50
 
-  },
+        },
 
-  Desserts: {
+        'White Wine Spritzer': {
 
-    Wines: {
+          description: 'Chilled chardonnay, club soda and lime slice'
 
-      'Chocolate Wine': {
-
-        description: 'Traditional dessert wine from the Andes mountains',
-
-        price: 12.50
+        },...
 
       },...
 
     },
 
-    'Cold Dishes': {
+    Desserts: {
 
-      'Lemon Tart': {
+      Wines: {
 
-        description: 'Traditional lemon pie decorated with seasonal fruits',
+        'Chocolate Wine': {
 
-        price: 8.95
+          description: 'Traditional dessert wine from the Andes mountains',
+
+          price: 12.50
+
+        },...
+
+      },
+
+      'Cold Dishes': {
+
+        'Lemon Tart': {
+
+          description: 'Traditional lemon pie decorated with seasonal fruits',
+
+          price: 8.95
+
+        }
 
       }
 
     }
 
   }
-
-}
 
 
 
