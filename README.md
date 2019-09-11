@@ -42,11 +42,11 @@ npm install
 
 Route: '/api/:L/menu/create'
 
-    **Description**: Creates a menu for the associated business ID (as defined by parameter ':L').
-                 If a menu is already created for said business it will be overwritten with the menu
-                 included in the body of the request.
-                 Will respond with either 'success' or the error encountered.
-                 Expects a menu object with the following structure:
+  **Description**: Creates a menu for the associated business ID (as defined by parameter ':L').
+               If a menu is already created for said business it will be overwritten with the menu
+               included in the body of the request.
+               Will respond with either 'success' or the error encountered.
+               Expects a menu object with the following structure:
 
     let menu = { 
       mealType: {
@@ -69,26 +69,26 @@ price: price in $USD of menu item.
 
 Route: '/api/:L/menu/read'
 
-    **Description**: Responds with a menu object for the associated business ID.
-                 Menu will be in the structure as defined in the 'create' section.
+  **Description**: Responds with a menu object for the associated business ID.
+               Menu will be in the structure as defined in the 'create' section.
 
 ### UPDATE
 
 Route: '/api/:L/menu/update'
 
-    **Description**: Updates a menu for the associated business ID. 
-                 Expects an object that follows the structure of the existing menu.
-                 If the specified mealType, category or dishName is not already present
-                 in the menu, it will be added to the menu.
-                 Will respond with either 'success' or the error encountered.
+  **Description**: Updates a menu for the associated business ID. 
+               Expects an object that follows the structure of the existing menu.
+               If the specified mealType, category or dishName is not already present
+               in the menu, it will be added to the menu.
+               Will respond with either 'success' or the error encountered.
 
 ### DELETE
 
 Route: '/api/:L/menu/delete'
 
-    **Description**: Deletes a menu, or menu element, from the menu for the specified business.
-                 If the entire menu is to be deleted, no object is required in the request body.
-                 If only certain elements are to be deleted, then they must be defined up to the 'dishName' level.
+  **Description**: Deletes a menu, or menu element, from the menu for the specified business.
+               If the entire menu is to be deleted, no object is required in the request body.
+               If only certain elements are to be deleted, then they must be defined up to the 'dishName' level.
 
 For example, given the following menu:
 
