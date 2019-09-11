@@ -48,16 +48,16 @@ Description: Creates a menu for the associated business ID (as defined by parame
              Will respond with either 'success' or the error encountered.
              Expects a menu object with the following structure:
 
-#  let menu = { 
-#    mealType: {
-#      category: {
-#        dishName: {
-#          description: 'Braised lambshank over cauliflower mash',
-#          price: 23.95
-#        },...
-#      },...
-#    },...
-#  }
+`let menu = { 
+  mealType: {
+    category: {
+      dishName: {
+        description: 'Braised lambshank over cauliflower mash',
+        price: 23.95
+      },...
+    },...
+  },...
+}`
 
 mealType: Breakfast, lunch, dinner, brunch, etc.
 category: Appetizers, Sides, Entrees, Drinks, Desserts, etc.
@@ -92,69 +92,69 @@ Description: Deletes a menu, or menu element, from the menu for the specified bu
 
 For example, given the following menu:
 
-# let menu = { 
-#  Dinner: {
-#    Entrees: {
-#      'Lamb Shank': {
-#        description: 'Braised lambshank over cauliflower mash',
-#        price: 23.95
-#      },...
-#    },
-#    Drinks: {
-#      'Old Fashioned': {
-#        description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
-#        price: 13.50
-#      },
-#      'White Wine Spritzer': {
-#        description: 'Chilled chardonnay, club soda and lime slice'
-#      },...
-#    },...
-#  },
-#  Desserts: {
-#    Wines: {
-#      'Chocolate Wine': {
-#        description: 'Traditional dessert wine from the Andes mountains',
-#        price: 12.50
-#      },...
-#    },
-#    'Cold Dishes': {
-#      'Lemon Tart': {
-#        description: 'Traditional lemon pie decorated with seasonal fruits',
-#        price: 8.95
-#      }
-#    }
-#  }
-# }
+`let menu = { 
+  Dinner: {
+    Entrees: {
+      'Lamb Shank': {
+        description: 'Braised lambshank over cauliflower mash',
+        price: 23.95
+      },...
+    },
+    Drinks: {
+      'Old Fashioned': {
+        description: 'Bourbon, maraschino cherry, toasted orange peel, raw sugar cane juice',
+        price: 13.50
+      },
+      'White Wine Spritzer': {
+        description: 'Chilled chardonnay, club soda and lime slice'
+      },...
+    },...
+  },
+  Desserts: {
+    Wines: {
+      'Chocolate Wine': {
+        description: 'Traditional dessert wine from the Andes mountains',
+        price: 12.50
+      },...
+    },
+    'Cold Dishes': {
+      'Lemon Tart': {
+        description: 'Traditional lemon pie decorated with seasonal fruits',
+        price: 8.95
+      }
+    }
+  }
+}`
 
 
 To delete the 'Lamb Shank' entree, the request object would be structured as follows:
 
-#let request = {
-#  Dinner: {
-#    Entrees: ['Lamb Shank']
-#  }
-# }
+`let request = {
+  Dinner: {
+    Entrees: ['Lamb Shank']
+  }
+}`
 
 To delete the drinks section the request would be slightly different:
 
-# let request = {
-#  Dinner: {
-#    Drinks: 'all'
-#  }
-# }
+`let request = {
+  Dinner: {
+    Drinks: 'all'
+  }
+}`
 
 Deleting the 'Desserts' category follows the same structure as deleting a section:
 
-# let request = {
-#  Desserts: 'all'
-# }
+`let request = {
+  Desserts: 'all'
+}`
 
 To delete all at the same time:
 
-# let request = {
-#  Dinner: {
-#    entrees: ['Lamb Shank'],
-#    Drinks: 'all'
-#  },
-#  Desserts: 'all'
-# }
+`let request = {
+  Dinner: {
+    entrees: ['Lamb Shank'],
+    Drinks: 'all'
+  },
+  Desserts: 'all'
+}`
