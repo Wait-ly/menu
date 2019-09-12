@@ -15,17 +15,55 @@ const Menu = conn.model('Menu', menuSchema);
 
 const findMenu = (id) => Menu.find({ id });
 
-const createMenu = (menu) => Menu.save(menu);
+const createMenu = (menu, callback) => {
+  Menu.save(menu, (err) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback('success');
+    }
+  });
+}
 
-const getMenu = (id) => Menu.find({ id });
+const readMenu = (id, callback) => {
+  Menu.find({ id }, (err, result) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(result);
+    }
+  });
+}
 
-const updateMenu = (menu) => Menu.save(menu);
+const updateMenu = (menu, callback) => {
+  Menu.deleteOne({ id: menu.id }, (err) => {
+    if (err) {
+      callback(err);
+    } else {
+      Menu.save(menu, (err) => {
+        if (err) {
+          callback(err);
+        } else {
+          callback('success');
+        }
+      });
+    }
+  });
+}
 
-const deleteMenu = (menu) => Menu.save(menu);
+const deleteMenu = (id, callback) => {
+  Menu.deleteOne({ id }, (err) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback('success');
+    }
+  });
+}
 
 module.exports = { findMenu,
                     createMenu,
-                    getMenu,
+                    readMenu,
                     updateMenu,
                     deleteMenu
                  };

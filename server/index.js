@@ -4,7 +4,12 @@ const morgan = require('morgan');
 const compression = require('compression');
 const db = require('../database/database.js');
 
-const { findMenu } = db;
+const { findMenu,
+        createMenu,
+        readMenu,
+        updateMenu,
+        deleteMenu
+      } = db;
 const app = express();
 const port = 3004;
 
@@ -38,22 +43,37 @@ app.get('/api/:L/menu', (req, res) => {
     });
 });
 
-app.get('/api/:L/menu/create', (req, res) => {
-  // Create menu for business with ID 'L'
+// createMenu,
+//         getMenu,
+//         updateMenu,
+//         deleteMenu
+app.post('/api/menu/create', (req, res) => {
+  // Create menu
+  createMenu(req.body, (result) => {
+    res.send(result);
+  });
 });
 
-app.get('/api/:L/menu/read', (req, res) => {
-  // Read menu for business with ID 'L'
+app.get('/api/:id/menu/read', (req, res) => {
+  // Read menu for business with ID ':id'
+  readMenu(req.params.id, (result) => {
+    res.send(result);
+  });
 });
 
-app.get('/api/:L/menu/update', (req, res) => {
-  // Update menu for business with ID 'L'
+app.post('/api/menu/update', (req, res) => {
+  // Update menu
+  updateMenu(req.body, (result) => {
+    res.send(result);
+  });
 });
 
-app.get('/api/:L/menu/delete', (req, res) => {
-  // delete menu for business with ID 'L'
+app.get('/api/:id/menu/delete', (req, res) => {
+  // delete menu for business with ID ':id'
+  deleteMenu(req.params.id, (result) => {
+    res.send(result);
+  });
 });
-
 
 app.listen(port, () => { console.log(`server ${port} is listening...`); });
 
