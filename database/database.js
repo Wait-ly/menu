@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 
-const conn = mongoose.createConnection('mongodb://database/menu',
+const conn = mongoose.createConnection('mongodb://localhost/menu',
   (err) => {
     if (err) {
       console.log(err);
@@ -15,8 +15,10 @@ const Menu = conn.model('Menu', menuSchema);
 
 const findMenu = (id) => Menu.find({ id });
 
-const createMenu = (menu, callback) => {
-  Menu.save(menu, (err) => {
+const createMenu = (id, menu, callback) => {
+  let newMenu = menu;
+  newMenu.id = id;
+  Menu.save(newMenu, (err) => {
     if (err) {
       callback(err);
     } else {
@@ -30,17 +32,20 @@ const readMenu = (id, callback) => {
     if (err) {
       callback(err);
     } else {
-      callback(result);
+      console.log(result[0]);
+      callback(result[0]);
     }
   });
 }
 
-const updateMenu = (menu, callback) => {
-  Menu.deleteOne({ id: menu.id }, (err) => {
+const updateMenu = (id, menu, callback) => {
+  let newMenu = menu;
+  newMenu.id = id;
+  Menu.deleteOne({ id }, (err) => {
     if (err) {
       callback(err);
     } else {
-      Menu.save(menu, (err) => {
+      Menu.save(newMenu, (err) => {
         if (err) {
           callback(err);
         } else {

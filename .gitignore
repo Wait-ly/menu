@@ -24,3 +24,7 @@ coverage
 build/
 dist/
 
+# Generated Data
+database/SDC/*.csv
+
+

@@ -26,8 +26,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/:L/menu', (req, res) => {
-  const menuId = req.params.L;
+app.get('/api/menu/:id', (req, res) => {
+  const menuId = req.params.id;
   findMenu(menuId)
     .then((result) => {
       const memo = [{}];
@@ -47,28 +47,28 @@ app.get('/api/:L/menu', (req, res) => {
 //         getMenu,
 //         updateMenu,
 //         deleteMenu
-app.post('/api/menu/create', (req, res) => {
+app.post('/api/menu/:id', (req, res) => {
   // Create menu
-  createMenu(req.body, (result) => {
+  createMenu(req.params.id, req.body, (result) => {
     res.send(result);
   });
 });
 
-app.get('/api/:id/menu/read', (req, res) => {
+app.get('/api/menu/:id', (req, res) => {
   // Read menu for business with ID ':id'
   readMenu(req.params.id, (result) => {
     res.send(result);
   });
 });
 
-app.post('/api/menu/update', (req, res) => {
+app.put('/api/menu/:id', (req, res) => {
   // Update menu
-  updateMenu(req.body, (result) => {
+  updateMenu(req.params.id, req.body, (result) => {
     res.send(result);
   });
 });
 
-app.get('/api/:id/menu/delete', (req, res) => {
+app.delete('/api/menu/:id', (req, res) => {
   // delete menu for business with ID ':id'
   deleteMenu(req.params.id, (result) => {
     res.send(result);
