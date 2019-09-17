@@ -1,22 +1,26 @@
 const faker = require('faker');
 const Chance = require('chance');
 
-const foodCategories = { 'Breakfast': [ 'Skillets', 'Omelets', 'Side Orders' ],
-                              'Lunch': [ 'Starters', 'Soups and Salads', 'Entrees' ],
-                              'Dinner': [ 'Appetizers', 'Main', 'Sides' ],
-                              'Dessert': [ 'Ice Cream', 'Pies', 'Shakes' ],
-                              'Drinks': [ 'Soft Drinks', 'Beer', 'Wine' ]
+const foodCategories = { 'Breakfast': [ 'Entrees', 'Side Orders' ],
+                              'Lunch': [ 'Starters', 'Entrees' ],
+                              'Dinner': [ 'Appetizers', 'Main' ],
+                              'Dessert': [ 'Ice Cream', 'Shakes' ],
+                              'Drinks': [ 'Soft Drinks', 'Alcohol' ]
 };
 const mainCategories = Object.keys(foodCategories);
+const mainCategoriesMap = {};
+mainCategories.forEach((cat, idx) => {
+  mainCategoriesMap[cat] = idx + 1;
+})
 let subCatIds = 1;
 let subCatMap = {};
 let subCatArr = [];
-mainCategories.forEach((category) => {
+mainCategories.forEach((category, idx) => {
   foodCategories[category].forEach((subCat) => {
     if (!subCatMap[subCat]) {
       subCatArr.push(subCat);
       subCatMap[subCat] = subCatIds;
-      subCatIds++;  
+      subCatIds++;
     }
   });
 });
@@ -26,6 +30,7 @@ const createDish = (i) => {
   const desc = faker.lorem.sentence();
   const dish = {
     id: i,
+    name: faker.lorem.word(),
     description: desc,
     price: (Math.random() * 100 + 5).toFixed(2),
   };
@@ -54,12 +59,7 @@ module.exports = {
   createDish,
   foodCategories,
   mainCategories,
+  mainCategoriesMap,
   subCatMap,
   subCatArr
 };
-
-// const start = Date.now();
-// let data = createData();
-// let elapsed = Date.now() - start;
-// elapsed = (elapsed / 1000).toFixed(2);
-// console.log(`Completed data generation, took ${secondsToReadableTime(elapsed)} to generate ${numMenus} menus.`);

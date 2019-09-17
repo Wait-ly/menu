@@ -2,26 +2,6 @@ const { Client } = require('pg');
 const fs = require('fs');
 const { createMenu, createDish, foodCategories, mainCategories, subCatMap, subCatArr } = require('./generateData.js');
 
-// const foodCategories = { 'Breakfast': [ 'Skillets', 'Omelets', 'Side Orders' ],
-//                               'Lunch': [ 'Starters', 'Soups and Salads', 'Entrees' ],
-//                               'Dinner': [ 'Appetizers', 'Main', 'Sides' ],
-//                               'Dessert': [ 'Ice Cream', 'Pies', 'Shakes' ],
-//                               'Drinks': [ 'Soft Drinks', 'Beer', 'Wine' ]
-// };
-// const mainCategories = Object.keys(foodCategories);
-// let subCatIds = 1;
-// let subCatMap = {};
-// let subCatArr = [];
-// mainCategories.forEach((category) => {
-//   foodCategories[category].forEach((subCat) => {
-//     if (!subCatMap[subCat]) {
-//       subCatArr.push(subCat);
-//       subCatMap[subCat] = subCatIds;
-//       subCatIds++;
-//     }
-//   });
-// });
-
 let categoriesQuery = `INSERT INTO categories (id, name) VALUES `;
 mainCategories.forEach((cat, idx) => {
   categoriesQuery += `(${idx+1},'${cat}'),`;
@@ -41,15 +21,7 @@ mainCategories.forEach((cat, idx) => {
   });
 });
 catSubCatJoinQuery = catSubCatJoinQuery.slice(0,catSubCatJoinQuery.length - 1) + `;`;
-let menuCatJoinQuery = `INSERT INTO menuCategoryJoin (id, menu_id, category_id) `;
-let menuCatJoinCounter = 1;
-for (let i = 1; i <= 10000000; i++) {
-  mainCategories.forEach((cat, idx) => {
-    menuCatJoinQuery += `(${menuCatJoinCounter},${i},${idx+1}),`;
-    menuCatJoinCounter++;
-  });
-}
-menuCatJoinQuery += `;`;
+
 
 const client = new Client({
   user: 'admin',
@@ -115,10 +87,10 @@ CREATE TABLE subcatItemJoin (
 );`;
 
 
-client.connect()
-  .then(() => {
-    createTables();
-  });
+// client.connect()
+//   .then(() => {
+//     createTables();
+//   });
 const createTables = () => {
   client.query(createTablesQuery, (err, result) => {
     if (err) {
@@ -144,15 +116,7 @@ const createTables = () => {
                   console.log(err);
                 } else {
                   console.log('success');
-                  client.query(menuCatJoinQuery, (err, result) => {
-                    if (err) {
-                      console.log('=======================================ERROR WILL ROBINSON, ERROR BEEP BOOP=======================================');
-                      console.log(err);
-                    } else {
-                      console.log('success');
-                      module.exports.disconnectDB();
-                    }
-                  });
+                  module.exports.disconnectDB();
                 }
               });
             }
@@ -175,22 +139,18 @@ module.exports.truncateTables = (callback) => {
 }
 
 
-module.exports.dishSeed = (callback) => {
-  client.query(`COPY menuItems FROM '/Users/user01/Desktop/git_tutorial/work/Menu/database/SDC/dishes.csv' CSV HEADER;`, callback)
+module.exports.dishSeed = (path, callback) => {
+  client.query(`COPY menuItems FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback)
 }
 
-module.exports.menuSeed = (callback) => {
-  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/database/SDC/menus.csv' CSV HEADER;`, callback)
+module.exports.menuSeed = (path, callback) => {
+  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback)
 }
 
-module.exports.itemSubCatJoinSeed = (callback) => {
-  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/database/SDC/subCatItemJoin.csv' CSV HEADER;`, callback);
+module.exports.itemSubCatJoinSeed = (path, callback) => {
+  client.query(`COPY subcatitemjoin FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
 }
-// client.query('SELECT $1::text as message', ['Hello world!'], (err, result) => {
-//   if (err) {
-//     console.log('=======================================ERROR WILL ROBINSON, ERROR BEEP BOOP=======================================');
-//     console.log(err);
-//   } else {
-//     console.log(result);
-//   }
-// })
+
+module.exports.menuCatSeed = (path, callback) => {
+  client.query(`COPY menucategoryjoin FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
+}
