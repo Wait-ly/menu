@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:3004'
+  processor: "./artillery-functions.js"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - function: generateRandomMenuIdTop90
+    - loop:
+      - get:
+          url: "/api/menu/postgresql/{{ $loopElement }}"
+      over: menuIds

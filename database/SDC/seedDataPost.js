@@ -16,22 +16,22 @@ const dishesPerMenu = 10;
 let menuFilePath = './database/SDC/menus_1.csv';
 let dishFilePath = './database/SDC/dishes_1.csv';
 let subCatItemJoinPath = './database/SDC/subCatItemJoin_1.csv';
-let menuCatJoinPath = './database/SDC/menuCatJoin_1.csv';
+
 
 let menuFile = fs.createWriteStream(menuFilePath);
 let dishFile = fs.createWriteStream(dishFilePath);
 let subCatItemJoinFile = fs.createWriteStream(subCatItemJoinPath);
-let menuCatJoinFile = fs.createWriteStream(menuCatJoinPath);
+
 
 menuFile.write('id,name\n');
-dishFile.write('id,name,description,price,subCategory\n');
+dishFile.write('id,name,description,price,business_id,subcat_id,cat_id\n');
 subCatItemJoinFile.write('id,subcat_id,item_id\n');
-menuCatJoinFile.write('id,menu_id,category_id\n');
+
 
 let dishesInfo = '';
 let menuInfo = '';
 let subCatItemJoin = '';
-let menuCatJoinInfo = '';
+
 
 let dishIds = [];
 let dish = '';
@@ -57,27 +57,39 @@ var secondsToReadableTime = (timeInSeconds) => {
   }
   return result;
 }
+let arr = [];
+Object.keys(foodCategories).forEach((cat) => {
+  arr = arr.concat(foodCategories[cat]);
+})
+const totalSubCats = arr.length;
+const itemsPerSubCat = Math.floor(dishesPerMenu / totalSubCats);
+const itemsPerCat = mainCategories.map((cat) => {
+  return foodCategories[cat].length * itemsPerSubCat;
+});
 
 const createDishes = () => {
   for (let j = 0; j < dishesPerMenu; j++) {
     dishCounter++;
     dish = createDish(dishCounter);
-    dish.subCategory = subCatArr[j];
     dishIds.push(dishCounter);
-    dishesInfo += `${dish.id},${dish.name},${dish.description},${dish.price},${dish.subCategory}\n`;
+    let subCatId = Math.floor(j / 1) + 1;
+    if (subCatId === 4) {
+      subCatId = 1;
+    } else if (subCatId > 4) {
+      subCatId -= 1;
+    }
+    dishesInfo += `${dish.id},${dish.name},${dish.description},${dish.price},${menuCounter},${subCatId},${Math.floor(j / 2) + 1}\n`;
   }
 }
 
 const createMenus = () => {
   for (let i = 0; i < numMenusPerWrite; i++) {
-    createDishes();
     menuCounter++;
+    createDishes();
     menu = createMenu(dishIds);
     menuInfo += `${menuCounter},${faker.lorem.word()}\n`;
     dishIds = [];
     mainCategories.forEach((category) => {
-      menuCatJoinCounter++;
-      menuCatJoinInfo += `${menuCatJoinCounter},${menuCounter},${mainCategoriesMap[category]}\n`;
       foodCategories[category].forEach((subCategory) => {
         menu[category][subCategory].forEach((item) => {
           subCatItemJoinCounter++;
@@ -115,30 +127,43 @@ connectDB( async (err) => {
       await write(menuFile, menuInfo);
       await write(dishFile, dishesInfo);
       await write(subCatItemJoinFile, subCatItemJoin);
-      await write(menuCatJoinFile, menuCatJoinInfo);
       dishesInfo = '';
       menuInfo = '';
       subCatItemJoin = '';
-      menuCatJoinInfo = '';
+
     }
     elapsed = ((Date.now() - start) / 1000).toFixed(2);
     console.log(`CSV files have been generated.`);
     console.log(`Done, generated table info for ${menuCounter} menus and ${dishCounter} dishes in ${secondsToReadableTime(elapsed)}.`);
     console.log(`onto seeding...`);
-    dishSeed(dishFilePath, () => {
-      console.log('1 - seeded dishes table');
-      menuSeed(menuFilePath, () => {
-        console.log('2 - seeded menus table');
-        itemSubCatJoinSeed(subCatItemJoinPath, () => {
-          console.log('3 - seeded subCatItemJoin table');
-          menuCatSeed(menuCatJoinPath, () => {
-            console.log('4 - seeded menuCatJoin table');
-            elapsed = ((Date.now() - start) / 1000).toFixed(2);
-            console.log(`Done, seeded ${menuCounter} menus and ${dishCounter} dishes in ${secondsToReadableTime(elapsed)}.`);
+    menuSeed(menuFilePath, (err) => {
+      if (err) {
+        console.log(err);
+        disconnectDB();
+      } else {
+        elapsed = ((Date.now() - start) / 1000).toFixed(2);
+        console.log(`1 - seeded menus table, elapsed time: ${secondsToReadableTime(elapsed)}`);
+        dishSeed(dishFilePath, (err) => {
+          if (err) {
+            console.log(err);
             disconnectDB();
-          });
+          } else {
+            elapsed = ((Date.now() - start) / 1000).toFixed(2);
+            console.log(`2 - seeded dishes table, elapsed time: ${secondsToReadableTime(elapsed)}`);
+            itemSubCatJoinSeed(subCatItemJoinPath, (err) => {
+              if (err) {
+                console.log(err);
+                disconnectDB();
+              } else {
+                console.log('3 - seeded subCatItemJoin table');
+                elapsed = ((Date.now() - start) / 1000).toFixed(2);
+                console.log(`Done, seeded ${menuCounter} menus and ${dishCounter} dishes in ${secondsToReadableTime(elapsed)}.`);
+                disconnectDB();
+              }
+            });
+          }
         });
-      });
+      }
     });
   }
 });

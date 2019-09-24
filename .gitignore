@@ -26,3 +26,6 @@ dist/
 
 # Generated Data
 database/SDC/*.csv
+
+# New Relic config file
+newrelic.config.js

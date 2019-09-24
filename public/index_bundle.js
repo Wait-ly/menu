@@ -101,10 +101,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _MealOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MealOption */ "./client/MealOption.jsx");
 /* harmony import */ var _Category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Category */ "./client/Category.jsx");
-/* harmony import */ var _database_sampleData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../database/sampleData */ "./database/sampleData.js");
-/* harmony import */ var _HideButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./HideButton */ "./client/HideButton.jsx");
-/* harmony import */ var _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./css_modules/app.css */ "./client/css_modules/app.css");
-/* harmony import */ var _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_css_modules_app_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _HideButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./HideButton */ "./client/HideButton.jsx");
+/* harmony import */ var _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css_modules/app.css */ "./client/css_modules/app.css");
+/* harmony import */ var _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_css_modules_app_css__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -126,7 +125,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+ // import sample from '../database/sampleData';
 
 
 
@@ -143,9 +142,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Menu).call(this, props));
     _this.state = {
-      menu: _database_sampleData__WEBPACK_IMPORTED_MODULE_4__["default"][0],
-      selectedMealOption: 'Brunch',
-      fullMenuIsVisible: false
+      menu: undefined,
+      selectedMealOption: undefined,
+      fullMenuIsVisible: false,
+      isLoading: true
     };
     _this.getMenuData = _this.getMenuData.bind(_assertThisInitialized(_this));
     _this.handleViewChange = _this.handleViewChange.bind(_assertThisInitialized(_this));
@@ -153,18 +153,13 @@ function (_React$Component) {
     _this.getMealOptionList = _this.getMealOptionList.bind(_assertThisInitialized(_this));
     return _this;
   } // gets menu data as soon as page renders
+  // eslint-disable-next-line camelcase
 
 
   _createClass(Menu, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getMenuData();
-    }
-  }, {
-    key: "getMealOptionList",
-    value: function getMealOptionList() {
-      var menu = this.state.menu;
-      return Object.keys(menu);
     } // get menu data from server
 
   }, {
@@ -173,13 +168,22 @@ function (_React$Component) {
       var _this2 = this;
 
       var id = window.location.pathname.split('/')[1].slice(1);
-      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://ec2-18-219-139-83.us-east-2.compute.amazonaws.com:3004/api/".concat(id === undefined ? '1' : id, "/menu"), function (result) {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/menu/9999999", function (result) {
+        var selectedMealOption = _this2.getMealOptionList(result[0])[0];
+
         _this2.setState({
-          menu: result[0]
-        }, function () {
-          _this2.handleViewChange(_this2.getMealOptionList()[0]);
+          menu: result[0],
+          selectedMealOption: selectedMealOption,
+          isLoading: false
         });
       });
+    } // eslint-disable-next-line react/destructuring-assignment
+
+  }, {
+    key: "getMealOptionList",
+    value: function getMealOptionList() {
+      var inputMenu = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state.menu;
+      return Object.keys(inputMenu);
     } // handles button click changing states
 
   }, {
@@ -213,16 +217,16 @@ function (_React$Component) {
       var _this$state = this.state,
           menu = _this$state.menu,
           fullMenuIsVisible = _this$state.fullMenuIsVisible,
-          selectedMealOption = _this$state.selectedMealOption;
-      var mealOptions = this.getMealOptionList();
-      var categories = menu[selectedMealOption]; // if (!categories) debugger;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.masterContainer
+          selectedMealOption = _this$state.selectedMealOption,
+          isLoading = _this$state.isLoading;
+      var mealOptions = isLoading ? undefined : this.getMealOptionList();
+      var categories = isLoading ? undefined : menu[selectedMealOption];
+      var fetchedMenu = isLoading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.masterContainer
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Menu"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.jrContainer
+        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.jrContainer
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.mealOptions
+        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.mealOptions
       }, mealOptions.map(function (mealOption) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MealOption__WEBPACK_IMPORTED_MODULE_2__["default"], {
           selected: selectedMealOption === mealOption,
@@ -230,7 +234,7 @@ function (_React$Component) {
           mealOption: mealOption
         });
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: fullMenuIsVisible ? _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals2 : _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.meals
+        className: fullMenuIsVisible ? _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.meals2 : _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.meals
       }, Object.keys(categories).map(function (categoryName) {
         var dishes = categories[categoryName];
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Category__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -238,11 +242,12 @@ function (_React$Component) {
           dishes: dishes
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_6___default.a.hideButton
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HideButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        className: _css_modules_app_css__WEBPACK_IMPORTED_MODULE_5___default.a.hideButton
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HideButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
         handleVisibility: this.handleVisibility,
         fullMenuIsVisible: fullMenuIsVisible
       })));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, fetchedMenu);
     }
   }]);
 
@@ -682,340 +687,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('app'));
-
-/***/ }),
-
-/***/ "./database/sampleData.js":
-/*!********************************!*\
-  !*** ./database/sampleData.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// eslint-disable-next-line no-unused-expressions
-var sample = [{
-  Brunch: {
-    'Selection of Brandy': {
-      eum: {
-        description: 'Veritatis ratione laudantium ullam occaecati aliquam voluptas sint.',
-        price: 5.77
-      }
-    },
-    'Dessert Wines': {
-      consequatur: {
-        description: 'Molestias et vero repellat iure eius ut officiis et soluta.',
-        price: 60.61
-      },
-      consequuntur: {
-        description: 'Voluptates ipsam aut soluta et nemo exercitationem omnis eligendi.',
-        price: 136.04
-      }
-    },
-    'Small Plates': {
-      delectus: {
-        description: 'Et quod alias molestias enim rem incidunt.',
-        price: 49.35
-      },
-      perspiciatis: {
-        description: 'Provident sapiente consequatur magni distinctio aut natus possimus et sint.',
-        price: 137.77
-      },
-      sed: {
-        description: 'Quia deserunt neque est ut amet enim et minima provident.',
-        price: 92.96
-      },
-      quidem: {
-        description: 'Et nam ipsa molestias dolore aut recusandae sed et cupiditate.',
-        price: 15.15
-      },
-      voluptatibus: {
-        description: 'Optio mollitia nisi similique natus illum corrupti.',
-        price: 179.58
-      },
-      labore: {
-        description: 'Saepe provident deserunt molestiae omnis esse.',
-        price: 167.07
-      }
-    },
-    'Absinthe Classics': {
-      ut: {
-        description: 'Ea eum sunt.',
-        price: 78.36
-      },
-      itaque: {
-        description: 'Facilis doloremque in.',
-        price: 86.9
-      },
-      ab: {
-        description: 'Dicta consequatur sint sit tenetur iste autem dolorum quasi.',
-        price: 25.47
-      },
-      eum: {
-        description: 'Sit cupiditate cupiditate nobis id in harum ut.',
-        price: 155.74
-      },
-      laboriosam: {
-        description: 'Vel architecto sint id nihil.',
-        price: 141.96
-      }
-    },
-    Main: {
-      quae: {
-        description: 'Ullam fugiat blanditiis enim doloremque ad.',
-        price: 155
-      },
-      voluptas: {
-        description: 'Alias saepe nihil.',
-        price: 81.1
-      },
-      qui: {
-        description: 'Ex libero fugit repudiandae molestiae quo.',
-        price: 151.05
-      }
-    },
-    Sides: {
-      earum: {
-        description: 'Saepe est quod illum nihil quasi quo.',
-        price: 193.27
-      }
-    },
-    Entrees: {
-      quos: {
-        description: 'Dignissimos suscipit molestias possimus asperiores qui.',
-        price: 75.37
-      },
-      et: {
-        description: 'Ea accusamus deleniti sit ut eaque ut molestiae.',
-        price: 131.57
-      },
-      id: {
-        description: 'Nisi sed quidem nulla quia in aut ducimus quae.',
-        price: 32.53
-      },
-      quaerat: {
-        description: 'Dignissimos iure nostrum sapiente enim aut.',
-        price: 36.67
-      }
-    }
-  },
-  Dinner: {
-    'Selection of Brandy': {
-      est: {
-        description: 'Inventore inventore fuga consequatur.',
-        price: 81.79
-      },
-      iusto: {
-        description: 'Id aliquam facere veniam architecto omnis occaecati et.',
-        price: 184.28
-      },
-      et: {
-        description: 'Ut voluptate architecto numquam aut quisquam eos unde.',
-        price: 114.62
-      },
-      qui: {
-        description: 'Nihil quo nostrum perferendis.',
-        price: 181.76
-      }
-    },
-    'Soups & Salads': {
-      tempora: {
-        description: 'Soluta temporibus officiis voluptatem dolor voluptatem odio enim maxime quo.',
-        price: 37.92
-      },
-      consequuntur: {
-        description: 'Repellat consequatur cumque et repellat vero.',
-        price: 175.96
-      },
-      vitae: {
-        description: 'Eos cupiditate repellendus non necessitatibus est sed inventore.',
-        price: 72.69
-      },
-      velit: {
-        description: 'Enim sapiente repellat distinctio.',
-        price: 85.93
-      },
-      sed: {
-        description: 'Et veritatis ea dolorem et.',
-        price: 80.8
-      }
-    },
-    'After-dinner Spirits': {
-      sequi: {
-        description: 'Quos unde id maiores laboriosam sed laudantium et autem amet.',
-        price: 150.22
-      },
-      saepe: {
-        description: 'Nisi minus quos aut explicabo.',
-        price: 154.97
-      },
-      veniam: {
-        description: 'Nobis qui molestiae amet officia dicta velit ipsam.',
-        price: 13.34
-      },
-      quis: {
-        description: 'Laboriosam voluptatibus totam tempore placeat ea quo eos consequatur sint.',
-        price: 53.43
-      },
-      distinctio: {
-        description: 'A quia aut facilis sunt fugiat.',
-        price: 64.09
-      },
-      doloribus: {
-        description: 'Qui consequatur in corporis.',
-        price: 165.57
-      }
-    },
-    Desserts: {
-      architecto: {
-        description: 'Rerum dolorem corporis sed tempore quasi non consequuntur.',
-        price: 115.87
-      }
-    }
-  },
-  Dessert: {
-    'Selection of Brandy': {
-      molestiae: {
-        description: 'Debitis ut facilis debitis accusamus doloribus.',
-        price: 29.14
-      },
-      delectus: {
-        description: 'Aut molestiae quaerat et.',
-        price: 132.47
-      },
-      provident: {
-        description: 'Atque similique hic est voluptatum sed.',
-        price: 58.26
-      }
-    }
-  },
-  Cheese: {
-    Snacks: {
-      repellat: {
-        description: 'Et saepe aliquid adipisci.',
-        price: 135.46
-      },
-      omnis: {
-        description: 'Maiores voluptas distinctio non quam qui numquam magni non porro.',
-        price: 143.3
-      },
-      perspiciatis: {
-        description: 'Ipsum numquam soluta.',
-        price: 8.83
-      },
-      vero: {
-        description: 'Dignissimos facilis minus.',
-        price: 40.93
-      },
-      illum: {
-        description: 'Qui vero blanditiis qui ut beatae aut nostrum consequatur.',
-        price: 164.1
-      },
-      a: {
-        description: 'Laudantium nemo commodi id et soluta magni.',
-        price: 74.69
-      }
-    },
-    'Selection of Tea': {
-      deleniti: {
-        description: 'Harum quam impedit minus corporis et esse id incidunt.',
-        price: 198.95
-      },
-      quia: {
-        description: 'Quo eveniet ut delectus quam magnam voluptatem cum eos.',
-        price: 11.91
-      },
-      itaque: {
-        description: 'Et inventore aut ipsum quia exercitationem deserunt non.',
-        price: 150.89
-      },
-      qui: {
-        description: 'Iste repellendus in quaerat numquam quia magni aspernatur cum.',
-        price: 158.76
-      },
-      quas: {
-        description: 'Dolor eum eveniet id incidunt et repellendus.',
-        price: 189.3
-      },
-      totam: {
-        description: 'Dolorem accusantium ut eum.',
-        price: 41.66
-      }
-    },
-    'Raw Bar': {
-      id: {
-        description: 'Inventore nisi quia maxime.',
-        price: 54.14
-      },
-      adipisci: {
-        description: 'Et ratione dicta quos.',
-        price: 124.48
-      }
-    },
-    Desserts: {
-      nemo: {
-        description: 'Et ut autem dolorem.',
-        price: 137.03
-      },
-      fugit: {
-        description: 'Laboriosam non omnis sit deserunt.',
-        price: 160.52
-      },
-      cupiditate: {
-        description: 'Eos minima doloribus sequi rerum adipisci commodi aperiam iste.',
-        price: 53.92
-      },
-      illum: {
-        description: 'Nesciunt omnis est voluptatem odio doloribus molestiae vitae iste.',
-        price: 108.88
-      },
-      vel: {
-        description: 'Ratione quam quod illo.',
-        price: 71.32
-      }
-    },
-    'Selected Single-malt Scotches': {
-      repellat: {
-        description: 'Rem aut dolore ducimus corporis quia exercitationem rerum.',
-        price: 121.27
-      },
-      et: {
-        description: 'Illo non nihil fugiat non tempora praesentium voluptatem.',
-        price: 132.06
-      }
-    },
-    'Soups & Salads': {
-      et: {
-        description: 'Beatae non veniam.',
-        price: 134.99
-      }
-    },
-    Main: {
-      dolor: {
-        description: 'Sint voluptatem dignissimos dolorem libero occaecati pariatur temporibus possimus totam.',
-        price: 175.84
-      },
-      ad: {
-        description: 'Corporis molestiae tenetur pariatur iste.',
-        price: 176.88
-      },
-      et: {
-        description: 'Excepturi vero aliquam dicta expedita aperiam et qui cumque tempora.',
-        price: 5.05
-      },
-      quidem: {
-        description: 'Facere dolorum mollitia cupiditate temporibus voluptates.',
-        price: 112.65
-      },
-      odio: {
-        description: 'Ea ipsa quia inventore tempore sit quia dolorum minima nisi.',
-        price: 75.41
-      }
-    }
-  }
-}];
-/* harmony default export */ __webpack_exports__["default"] = (sample);
 
 /***/ }),
 

@@ -30,30 +30,19 @@ const client = new Client({
   password: 'letstacoboutit'
 });
 
-const createTablesQuery = `DROP TABLE IF EXISTS menuitems; CREATE TABLE menuItems (
-  id INT NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  description VARCHAR(200) NOT NULL,
-  price float(2)  NOT NULL,
-  subCategory VARCHAR(150) NOT NULL,
-  PRIMARY KEY (id)
-);
+const createTablesQuery = `
+DROP TABLE IF EXISTS subcatItemJoin;
+DROP TABLE IF EXISTS catSubcatJoin;
+DROP TABLE IF EXISTS menuitems;
 DROP TABLE IF EXISTS menus;
+DROP TABLE IF EXISTS subcategories;
+DROP TABLE IF EXISTS categories;
 
 CREATE TABLE menus (
   id int NOT NULL,
   name VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
-DROP TABLE IF EXISTS menuCategoryJoin;
-
-CREATE TABLE menuCategoryJoin (
-  id int NOT NULL,
-  menu_id int NOT NULL,
-  category_id int NOT NULL,
-  PRIMARY KEY (id)
-);
-DROP TABLE IF EXISTS subcategories;
 
 CREATE TABLE subcategories (
   id int NOT NULL,
@@ -61,35 +50,51 @@ CREATE TABLE subcategories (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS categories;
-
 CREATE TABLE categories (
   id int NOT NULL,
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS catSubcatJoin;
+CREATE TABLE menuItems (
+  id INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(200) NOT NULL,
+  price float(2)  NOT NULL,
+  business_id INT NOT NULL,
+  subcat_id INT NOT NULL,
+  cat_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (business_id) REFERENCES menus(id),
+  FOREIGN KEY (cat_id) REFERENCES categories(id),
+  FOREIGN KEY (subcat_id) REFERENCES subcategories(id)
+);
 
 CREATE TABLE catSubcatJoin (
   id int NOT NULL,
   category_id int NOT NULL,
   subcat_id int NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (category_id) REFERENCES categories(id),
+  FOREIGN KEY (subcat_id) REFERENCES subcategories(id)
 );
-DROP TABLE IF EXISTS subcatItemJoin;
 
 CREATE TABLE subcatItemJoin (
   id int NOT NULL,
   subcat_id int NOT NULL,
   item_id int NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (subcat_id) REFERENCES subcategories(id),
+  FOREIGN KEY (item_id) REFERENCES menuitems(id)
 );`;
 
 
 // client.connect()
 //   .then(() => {
 //     createTables();
+//   })
+//   .catch((err) => {
+//     console.log(`Hit an error:       `, err)
 //   });
 const createTables = () => {
   client.query(createTablesQuery, (err, result) => {
@@ -140,11 +145,11 @@ module.exports.truncateTables = (callback) => {
 
 
 module.exports.dishSeed = (path, callback) => {
-  client.query(`COPY menuItems FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback)
+  client.query(`COPY menuItems FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
 }
 
 module.exports.menuSeed = (path, callback) => {
-  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback)
+  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
 }
 
 module.exports.itemSubCatJoinSeed = (path, callback) => {

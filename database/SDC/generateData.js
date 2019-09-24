@@ -11,7 +11,7 @@ const mainCategories = Object.keys(foodCategories);
 const mainCategoriesMap = {};
 mainCategories.forEach((cat, idx) => {
   mainCategoriesMap[cat] = idx + 1;
-})
+});
 let subCatIds = 1;
 let subCatMap = {};
 let subCatArr = [];
