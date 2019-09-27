@@ -13,9 +13,9 @@ const numMenusTotal = 10000000;
 const numMenusPerWrite = 10000;
 const dishesPerMenu = 10;
 
-let menuFilePath = './database/SDC/menus_1.csv';
-let dishFilePath = './database/SDC/dishes_1.csv';
-let subCatItemJoinPath = './database/SDC/subCatItemJoin_1.csv';
+let menuFilePath = '/home/ec2-user/menu/database/SDC/menus_1.csv';
+let dishFilePath = '/home/ec2-user/menu/database/SDC/dishes_1.csv';
+let subCatItemJoinPath = '/home/ec2-user/menu/database/SDC/subCatItemJoin_1.csv';
 
 
 let menuFile = fs.createWriteStream(menuFilePath);
@@ -122,16 +122,16 @@ connectDB( async (err) => {
     console.log(err);
   } else {
     const passes = numMenusTotal / numMenusPerWrite;
-    for (let i = 1; i <= passes; i++) {
-      createMenus();
-      await write(menuFile, menuInfo);
-      await write(dishFile, dishesInfo);
-      await write(subCatItemJoinFile, subCatItemJoin);
-      dishesInfo = '';
-      menuInfo = '';
-      subCatItemJoin = '';
-
-    }
+//    for (let i = 1; i <= passes; i++) {
+//      createMenus();
+//      await write(menuFile, menuInfo);
+//      await write(dishFile, dishesInfo);
+//      await write(subCatItemJoinFile, subCatItemJoin);
+//      dishesInfo = '';
+//      menuInfo = '';
+//      subCatItemJoin = '';
+//
+//    }
     elapsed = ((Date.now() - start) / 1000).toFixed(2);
     console.log(`CSV files have been generated.`);
     console.log(`Done, generated table info for ${menuCounter} menus and ${dishCounter} dishes in ${secondsToReadableTime(elapsed)}.`);

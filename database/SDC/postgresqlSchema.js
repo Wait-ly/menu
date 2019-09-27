@@ -24,13 +24,13 @@ catSubCatJoinQuery = catSubCatJoinQuery.slice(0,catSubCatJoinQuery.length - 1) +
 
 
 const client = new Client({
-  user: 'admin',
-  host: 'localhost',
+  user: 'power_user',
+  host: '172.31.13.175',
   database: 'opentable',
   password: 'letstacoboutit'
 });
 
-const createTablesQuery = `
+const createTablesQuery = ` 
 DROP TABLE IF EXISTS subcatItemJoin;
 DROP TABLE IF EXISTS catSubcatJoin;
 DROP TABLE IF EXISTS menuitems;
@@ -89,13 +89,13 @@ CREATE TABLE subcatItemJoin (
 );`;
 
 
-// client.connect()
-//   .then(() => {
-//     createTables();
-//   })
-//   .catch((err) => {
-//     console.log(`Hit an error:       `, err)
-//   });
+//client.connect()
+//  .then(() => {
+//    createTables();
+//  })
+//  .catch((err) => {
+//    console.log(`Hit an error:       `, err)
+//  });
 const createTables = () => {
   client.query(createTablesQuery, (err, result) => {
     if (err) {
@@ -145,17 +145,18 @@ module.exports.truncateTables = (callback) => {
 
 
 module.exports.dishSeed = (path, callback) => {
-  client.query(`COPY menuItems FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
+  client.query(`COPY menuItems FROM '${path}' CSV HEADER;`, callback);
 }
 
 module.exports.menuSeed = (path, callback) => {
-  client.query(`COPY menus FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
+  client.query(`COPY menus FROM '${path}' CSV HEADER;`, callback);
 }
 
 module.exports.itemSubCatJoinSeed = (path, callback) => {
-  client.query(`COPY subcatitemjoin FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
+  client.query(`COPY subcatitemjoin FROM '${path}' CSV HEADER;`, callback);
 }
 
 module.exports.menuCatSeed = (path, callback) => {
-  client.query(`COPY menucategoryjoin FROM '/Users/user01/Desktop/git_tutorial/work/Menu/${path.slice(2)}' CSV HEADER;`, callback);
+  client.query(`COPY menucategoryjoin FROM '${path}' CSV HEADER;`, callback);
 }
+

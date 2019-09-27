@@ -38,7 +38,8 @@ app.post('/api/menu/:id', (req, res) => {
 });
 
 app.get('/api/menu/:id', (req, res) => {
-  // Read menu for business with ID ':id'
+  // Read menu for business with ID ':id
+  // console.log(`Received ${req.method} request from ${req.url}`);
   readMenuPG(req.params.id, (result) => {
     res.send([result]);
   });

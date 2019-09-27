@@ -97,7 +97,7 @@ const readMenuPG = (id, callback) => {
         menu[category][subcategory][name].description = description;
         menu[category][subcategory][name].price = price.toString();
       });
-      // console.log(menu);
+      // console.log(`Here's the menu object we are going to send back:\n        `, menu);
       callback(menu);
     }
   });
