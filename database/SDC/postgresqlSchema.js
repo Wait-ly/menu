@@ -1,6 +1,7 @@
 const { Client } = require('pg');
 const fs = require('fs');
 const { createMenu, createDish, foodCategories, mainCategories, subCatMap, subCatArr } = require('./generateData.js');
+const { user, host, database, password } = require('../../postgres.login.js');
 
 let categoriesQuery = `INSERT INTO categories (id, name) VALUES `;
 mainCategories.forEach((cat, idx) => {
@@ -24,13 +25,13 @@ catSubCatJoinQuery = catSubCatJoinQuery.slice(0,catSubCatJoinQuery.length - 1) +
 
 
 const client = new Client({
-  user: 'power_user',
-  host: '172.31.13.175',
-  database: 'opentable',
-  password: 'letstacoboutit'
+  user,
+  host,
+  database,
+  password
 });
 
-const createTablesQuery = ` 
+const createTablesQuery = `
 DROP TABLE IF EXISTS subcatItemJoin;
 DROP TABLE IF EXISTS catSubcatJoin;
 DROP TABLE IF EXISTS menuitems;

@@ -29,3 +29,6 @@ database/SDC/*.csv
 
 # New Relic config file
 newrelic.config.js
+
+# Postgres Login file
+postgres.login.js

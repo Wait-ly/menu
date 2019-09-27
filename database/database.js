@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
 const { Client } = require('pg');
+const { user, host, database, password } = require('../postgres.login.js');
 
+console.log(user);
+console.log(host);
+console.log(database);
+console.log(password);
 const client = new Client({
-  user: 'power_user',
-  host: '52.53.196.227',
-  database: 'opentable',
-  password: 'letstacoboutit'
+  user,
+  host,
+  database,
+  password
 });
 
 let maxMenuItemsId = 0;
