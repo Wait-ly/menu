@@ -2,10 +2,6 @@
 const { Client } = require('pg');
 const { user, host, database, password } = require('../postgres.login.js');
 
-console.log(user);
-console.log(host);
-console.log(database);
-console.log(password);
 const client = new Client({
   user,
   host,
